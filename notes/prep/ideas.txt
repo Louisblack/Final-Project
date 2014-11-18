@@ -1,16 +1,16 @@
 Concurreny and distribution
 
-	Web app with some sort of shared resource 
-	Some sort of client server application
-	Basic online multiplayer Game?
+    Web app with some sort of shared resource 
+    Some sort of client server application
+    Basic online multiplayer Game?
 
 
 
 How processors work
 
-	Emulate an old processor in software.
+    Emulate an old processor in software.
 
 
 Something with an Arduino or Raspberry Pi?
-	Very basic home automation.
+    Very basic home automation.
     Automatic garden waterer using Raspberry Pi and rain sensor - web interface.
