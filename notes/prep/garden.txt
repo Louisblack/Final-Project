@@ -1,0 +1,39 @@
+
+Automatic Garden Waterer
+
+Background to the proposal:
+    
+    I like having a nice garden but I am lazy and forgetful. Instead of having to remember
+    to check the weather forecast and decide whether I need to water the garden in the 
+    morning or evening I would like something to do it for me. Using one of the many weather
+    web services it should be possible to decide whether the garden should be watered or not.
+    
+    My proposal is for an application that runs on a Raspberry Pi that monitors a web service
+    for weather forecasts. If no rain is forecast then the application will use the GPIO
+    pins on the Raspberry Pi to open a water valve to water the garden. The system could
+    check the web service again in the evening to see if it did rain or not and take
+    appropriate action. The time that the valve is open would depend on the forecasted 
+    temperature for the day.
+    
+    The system should also provide a web interface to display if the garden was watered 
+    and for how long. The web server may not be run from the Pi itself but data could be 
+    sent to a separate server after running.
+
+Existing Skills:
+
+    I have studied several programming modules at the OU. 
+    I am a professional developer with experience building large distributed systems 
+    and web interfaces.
+    
+    However I do not have any experience with wiring. 
+    
+Next:
+    
+    I need to look into whether a water valve exists that can be controlled from the 
+    Raspberry Pi.
+    I need to understand how to use the Raspberry Pi GPIO pins to control external devices.
+    I need to look at which weather web services provide the data I would require - or 
+    do I need to look at building in other sensors like a moisture sensor.
+
+
+    
