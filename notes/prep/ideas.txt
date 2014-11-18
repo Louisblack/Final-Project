@@ -1,0 +1,5 @@
+Concurreny and distribution
+
+	Web app with some sort of shared resource 
+	Some sort of client server application
+	Basic online multiplayer Game?
