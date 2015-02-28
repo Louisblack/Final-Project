@@ -8,24 +8,31 @@ Background to the proposal:
     morning or evening I would like something to do it for me. Using one of the many weather
     web services it should be possible to decide whether the garden should be watered or not.
     
-    My proposal is for an application that runs on a Raspberry Pi that monitors a web service
-    for weather forecasts. If no rain is forecast then the application will use the GPIO
-    pins on the Raspberry Pi to open a water valve to water the garden. The system could
-    check the web service again in the evening to see if it did rain or not and take
-    appropriate action. The time that the valve is open would depend on the forecasted 
-    temperature for the day.
+    My proposal is for an application that runs on a server that monitors a web service
+    for weather forecasts. If no rain is forecast then the application will send a signal 
+    to a Raspberry Pi in the garden that will use the GPIO pins on the Raspberry Pi to 
+    open a water valve to water the garden. The system could check the web service again 
+    in the evening to see if it did rain or not and take appropriate action. The time that 
+    the valve is open would depend on the forecasted temperature for the day. The system 
+    would be distributed across a central server machine inside and one or more Raspberry 
+    Pis that actually open and close the valves. 
     
     The system should also provide a web interface to display if the garden was watered 
-    and for how long. The web server may not be run from the Pi itself but data could be 
-    sent to a separate server after running.
+    and for how long. A user should be able to log in to the web interface and initiate 
+    watering. 
+
 
 Existing Skills:
 
-    I have studied several programming modules at the OU. 
+    I have studied several programming modules at the OU. M362 covered web services, 
+    distributed systems and creating dynamic web pages. M363 covered project planning, 
+    methodologies and testing.
+    
     I am a professional developer with experience building large distributed systems 
     and web interfaces.
     
-    However I do not have any experience with wiring. 
+    However I do not have any experience with wiring. This will be the main difficulty 
+    to overcome.
     
 Next:
     
@@ -34,6 +41,7 @@ Next:
     I need to understand how to use the Raspberry Pi GPIO pins to control external devices.
     I need to look at which weather web services provide the data I would require - or 
     do I need to look at building in other sensors like a moisture sensor.
+    I would also need to look at how the server could communicate with the external Pis. 
 
 
     
