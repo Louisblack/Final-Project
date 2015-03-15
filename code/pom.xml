@@ -21,7 +21,6 @@
 	</modules>
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -147,6 +146,26 @@
 	</build>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.louishoughton</groupId>
+				<artifactId>SmartIrrigatorWateringNode</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.louishoughton</groupId>
+				<artifactId>SmartIrrigatorServices</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.louishoughton</groupId>
+				<artifactId>SmartIrrigatorServer</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.louishoughton</groupId>
+				<artifactId>SmartIrrigatorDomain</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
