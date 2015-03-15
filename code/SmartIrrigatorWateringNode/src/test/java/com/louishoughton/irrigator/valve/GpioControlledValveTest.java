@@ -1,7 +1,11 @@
 package com.louishoughton.irrigator.valve;
 
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,4 +49,12 @@ public class GpioControlledValveTest {
         valve.close();
     }
 
+    @Test
+    public void test_should_open_valve_for_provided_number_of_seconds() throws Exception {
+        Date timeStarted = new Date();
+        valve.openFor(1);
+        long timeTaken = new Date().getTime() - timeStarted.getTime();
+        assertThat(timeTaken, greaterThanOrEqualTo(1000L));
+    }
+    
 }

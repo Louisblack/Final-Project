@@ -1,5 +1,9 @@
 package com.louishoughton.irrigator.valve;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
+
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
@@ -7,12 +11,15 @@ import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
+@Component
 public class GpioControlledValve implements Valve {
 
     public static final Pin SOLENOID_PIN = RaspiPin.GPIO_01;
     public static final String PIN_NAME = "solenoidPin";
     public static final String VALVE_ALREADY_OPEN_MESSAGE = "The valve is already open";
     public static final String VALVE_ALREADY_CLOSED_MESSAGE = "The valve is already closed";
+    private static final Logger LOG = LogManager.getLogger(GpioControlledValve.class);
+    
     private GpioPinDigitalOutput gpioPin;
     
     public GpioControlledValve() {
@@ -34,6 +41,13 @@ public class GpioControlledValve implements Valve {
     }
 
     @Override
+    public void openFor(int seconds) throws IrrigationValveException {
+        open();
+        sleep(seconds);
+        close();
+    }
+
+    @Override
     public void close() throws IrrigationValveException {
         if (isOpen()) {
             gpioPin.low();
@@ -46,5 +60,13 @@ public class GpioControlledValve implements Valve {
     @Override
     public boolean isOpen() {
         return gpioPin.isHigh();
+    }
+
+    private void sleep(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            LOG.error(e);
+        }
     }
 }
