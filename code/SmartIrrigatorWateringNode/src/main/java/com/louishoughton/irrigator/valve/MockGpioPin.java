@@ -3,9 +3,10 @@ package com.louishoughton.irrigator.valve;
 import org.springframework.stereotype.Component;
 
 import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.impl.GpioPinImpl;
 import com.pi4j.io.gpio.GpioProvider;
 import com.pi4j.io.gpio.Pin;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.impl.GpioPinImpl;
 
 @Component
 public class MockGpioPin extends GpioPinImpl {
@@ -35,6 +36,14 @@ public class MockGpioPin extends GpioPinImpl {
         return high;
     }
     
+    @Override
+    public PinState getState() {
+        if (high) {
+            return PinState.HIGH;
+        } else {
+            return PinState.LOW;
+        }
+    }
 
     
 
