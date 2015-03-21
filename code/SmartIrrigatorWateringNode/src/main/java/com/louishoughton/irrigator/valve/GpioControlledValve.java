@@ -14,7 +14,7 @@ import com.pi4j.io.gpio.RaspiPin;
 @Component
 public class GpioControlledValve implements Valve {
 
-    public static final Pin SOLENOID_PIN = RaspiPin.GPIO_01;
+    public static final Pin SOLENOID_PIN = RaspiPin.GPIO_00;
     public static final String PIN_NAME = "solenoidPin";
     public static final String VALVE_ALREADY_OPEN_MESSAGE = "The valve is already open";
     public static final String VALVE_ALREADY_CLOSED_MESSAGE = "The valve is already closed";
