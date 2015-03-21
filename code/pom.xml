@@ -13,6 +13,7 @@
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
 		<spring.version>4.1.5.RELEASE</spring.version>
+		<jackson.version>2.5.1</jackson.version>
 	</properties>
 	<modules>
 		<module>SmartIrrigatorWateringNode</module>
@@ -178,6 +179,11 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
 				<version>2.2</version>
@@ -185,17 +191,17 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-core</artifactId>
-				<version>2.2.3</version>
+				<version>${jackson.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
-				<version>2.2.3</version>
+				<version>${jackson.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-annotations</artifactId>
-				<version>2.2.3</version>
+				<version>${jackson.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
