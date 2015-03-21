@@ -3,17 +3,16 @@ package com.louishoughton.irrigator.web;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.louishoughton.irrigator.error.IrrigationError;
 import com.louishoughton.irrigator.valve.IrrigationValveException;
 import com.louishoughton.irrigator.valve.Valve;
 
-@Controller
+@RestController
 @RequestMapping("/irrigate")
 public class IrrigationController {
 
@@ -26,9 +25,8 @@ public class IrrigationController {
         this.valve = valve;
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json") 
-    @ResponseBody
-    public  IrrigationResponse irrigate(@RequestBody IrrigationRequest request) {
+    @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE) 
+    public IrrigationResponse irrigate(IrrigationRequest request) {
         try {
             valve.openFor(request.getSeconds());
         } catch (IrrigationValveException e) {
