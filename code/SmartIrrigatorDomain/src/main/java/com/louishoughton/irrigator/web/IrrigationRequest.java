@@ -1,11 +1,9 @@
 package com.louishoughton.irrigator.web;
 
-import java.io.Serializable;
 
 
-public class IrrigationRequest implements Serializable {
+public class IrrigationRequest {
 
-    private static final long serialVersionUID = 7037513462588355768L;
     private int seconds;
 
     public IrrigationRequest(int seconds) {

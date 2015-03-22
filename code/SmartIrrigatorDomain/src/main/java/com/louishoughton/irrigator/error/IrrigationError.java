@@ -2,7 +2,7 @@ package com.louishoughton.irrigator.error;
 
 public class IrrigationError {
 
-    private String message;
+    private final String message;
 
     public IrrigationError(String message) {
         super();

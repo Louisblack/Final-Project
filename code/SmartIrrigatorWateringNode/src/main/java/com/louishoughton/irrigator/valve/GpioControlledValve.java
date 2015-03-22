@@ -66,7 +66,7 @@ public class GpioControlledValve implements Valve {
 
     private void sleep(int seconds) {
         try {
-            Thread.sleep(seconds * 1000);
+            Thread.sleep(seconds * 1000L);
         } catch (InterruptedException e) {
             LOG.error(e);
         }

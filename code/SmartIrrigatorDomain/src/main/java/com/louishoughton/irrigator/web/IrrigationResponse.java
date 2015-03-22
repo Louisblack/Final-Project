@@ -1,14 +1,12 @@
 package com.louishoughton.irrigator.web;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 import com.louishoughton.irrigator.error.IrrigationError;
 
-public class IrrigationResponse implements Serializable {
+public class IrrigationResponse {
 
-    private static final long serialVersionUID = -974576152869074707L;
     private boolean success;
     private List<IrrigationError> errors;
     
