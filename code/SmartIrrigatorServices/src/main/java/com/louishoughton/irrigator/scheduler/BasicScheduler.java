@@ -1,11 +1,11 @@
 package com.louishoughton.irrigator.scheduler;
 
+import com.louishoughton.irrigator.job.JobFactory;
+
 public class BasicScheduler implements Scheduler {
 
+    private JobFactory jobFactory;
     private TaskScheduler taskScheduler;
-    private Runnable execution;
-    private ExecutionDate morningExecutionDate;
-    private ExecutionDate eveningExecutionDate;
     
     /** 
      * Executes the provided Runnable with a basic schedule using
@@ -13,17 +13,15 @@ public class BasicScheduler implements Scheduler {
      * @param execution The Runnable to be executed
      * @param taskScheduler The TaskScheduler with which to execute the Runnable
      */
-    public BasicScheduler(Runnable execution, TaskScheduler taskScheduler) {
-        this.execution = execution;
+    public BasicScheduler(TaskScheduler taskScheduler, JobFactory jobFactory) {
         this.taskScheduler = taskScheduler;
-        this.morningExecutionDate = new BasicMorningExecutionDate();
-        this.eveningExecutionDate = new BasicEveningExecutionDate();
+        this.jobFactory = jobFactory;
     }
     
     @Override
     public void scheduleExecutions() {
-        taskScheduler.schedule(execution, morningExecutionDate.getDate());
-        taskScheduler.schedule(execution, eveningExecutionDate.getDate());
+        taskScheduler.schedule(jobFactory.newJob(), new BasicMorningExecutionDate().getDate());
+        taskScheduler.schedule(jobFactory.newJob(), new BasicEveningExecutionDate().getDate());
     }
 
 }
