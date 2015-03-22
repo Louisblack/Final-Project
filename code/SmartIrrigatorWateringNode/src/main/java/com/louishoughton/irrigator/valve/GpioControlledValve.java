@@ -2,7 +2,6 @@ package com.louishoughton.irrigator.valve;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.pi4j.io.gpio.GpioController;
@@ -28,11 +27,17 @@ public class GpioControlledValve implements Valve {
         gpioPin = gpioController.provisionDigitalOutputPin(SOLENOID_PIN, PIN_NAME, PinState.LOW);
     }
     
-    @Autowired
     GpioControlledValve(GpioPinDigitalOutput gpioPin) {
         this.gpioPin = gpioPin;
     }
     
+    @Override
+    public void openFor(int seconds) throws IrrigationValveException {
+        open();
+        sleep(seconds);
+        close();
+    }
+
     @Override
     public void open() throws IrrigationValveException {
         if (!isOpen()) {
@@ -41,13 +46,6 @@ public class GpioControlledValve implements Valve {
         } else {
             throw new IrrigationValveException(VALVE_ALREADY_OPEN_MESSAGE);
         }
-    }
-
-    @Override
-    public void openFor(int seconds) throws IrrigationValveException {
-        open();
-        sleep(seconds);
-        close();
     }
 
     @Override
