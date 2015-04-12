@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.louishoughton.irrigator.error.IrrigationError;
 import com.louishoughton.irrigator.valve.IrrigationValveException;
 import com.louishoughton.irrigator.valve.Valve;
 

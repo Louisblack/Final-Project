@@ -5,7 +5,9 @@ target
 *.checkstyle
 *.settings*
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+.mtj.tmp
+
+**/api-keys.properties
 
 # Package Files #
 *.jar

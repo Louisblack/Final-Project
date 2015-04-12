@@ -7,16 +7,14 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
-import com.louishoughton.irrigator.error.LocationException;
 
-public class GoogleMapsLocationFinder {
+public class GoogleMapsLocationFinder implements LocationFinder {
 
     private static final Logger LOG = LogManager.getLogger(GoogleMapsLocationFinder.class);
     
-    //TODO create as bean
     private GeoApiContext context;
     private String address;
-
+    
     
     public GoogleMapsLocationFinder(GeoApiContext context, String address) {
         super();
@@ -35,7 +33,7 @@ public class GoogleMapsLocationFinder {
     private GeocodingResult findLocation() throws LocationException {
         try {
             GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
-            return results[0]; //TODO make sure this is right
+            return results[0]; 
         } catch (Exception e) {
             LOG.error("Could not find location using Google Maps", e);
             throw new LocationException(e);

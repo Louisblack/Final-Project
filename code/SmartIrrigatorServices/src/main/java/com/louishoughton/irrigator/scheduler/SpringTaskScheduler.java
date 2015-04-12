@@ -6,7 +6,9 @@ import java.time.ZoneId;
 import java.util.Date;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SpringTaskScheduler implements TaskScheduler {
 
     private org.springframework.scheduling.TaskScheduler taskScheduler;

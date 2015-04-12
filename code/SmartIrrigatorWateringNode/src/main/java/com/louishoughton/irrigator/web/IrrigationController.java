@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.louishoughton.irrigator.error.IrrigationError;
 import com.louishoughton.irrigator.valve.IrrigationValveException;
 import com.louishoughton.irrigator.valve.Valve;
 

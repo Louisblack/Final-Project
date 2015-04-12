@@ -3,8 +3,6 @@ package com.louishoughton.irrigator.web;
 import java.util.Arrays;
 import java.util.List;
 
-import com.louishoughton.irrigator.error.IrrigationError;
-
 public class IrrigationResponse {
 
     private boolean success;
