@@ -8,4 +8,8 @@ public class LocationException extends Exception {
     public LocationException(Exception exception) {
         super(exception);
     }
+    
+    public LocationException(String message) {
+        super(message);
+    }
 }
