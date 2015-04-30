@@ -6,11 +6,13 @@ public class Forecast {
 
     private double chanceOfRainPercentage;
     private double inchesPerHour;
-    
-    public Forecast(double chanceOfRain, double inchesPerHour) {
+    private float maximumTemperature;
+
+    public Forecast(double chanceOfRain, double inchesPerHour, float maximumTemperature) {
         super();
         this.chanceOfRainPercentage = chanceOfRain;
         this.inchesPerHour = inchesPerHour;
+        this.maximumTemperature = maximumTemperature;
     }
 
     public double getChanceOfRainPercentage() {
@@ -21,7 +23,9 @@ public class Forecast {
         return inchesPerHour;
     }
 
-
+    public float getMaximumTemperature() {
+        return maximumTemperature;
+    }
 
     @Override
     public String toString() {

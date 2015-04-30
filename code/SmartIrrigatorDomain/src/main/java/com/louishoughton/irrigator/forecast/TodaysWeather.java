@@ -7,6 +7,7 @@ public class TodaysWeather {
     public static final double HEAVY_RAIN = 0.4;
     public static final double MODERATE_RAIN = 0.1;
     public static final double LIGHT_RAIN = 0.017;
+    public static final int WATER_MULTIPLIER = 3;
 
     private Forecast forecast;
 
@@ -16,6 +17,14 @@ public class TodaysWeather {
 
     public boolean shouldIWater() {
         return chanceOfRainBelowMinimum() || onlyLightRain();
+    }
+
+    public int howLongShouldIWater() {
+        if (shouldIWater()) {
+            return Math.round(forecast.getMaximumTemperature() * WATER_MULTIPLIER);
+        } else {
+            return 0;
+        }
     }
 
     private boolean onlyLightRain() {

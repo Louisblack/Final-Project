@@ -1,5 +1,6 @@
 package com.louishoughton.irrigator.forecast;
 
+import com.github.dvdme.ForecastIOLib.FIODaily;
 import com.github.dvdme.ForecastIOLib.FIODataPoint;
 import com.github.dvdme.ForecastIOLib.FIOHourly;
 import com.github.dvdme.ForecastIOLib.ForecastIO;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
 
 @Component
 public class ForecastIoForecastService {
@@ -30,18 +30,19 @@ public class ForecastIoForecastService {
     }
 
     Forecast getForecast() throws LocationException, ForecastException {
+        updateForecast();
         FIOHourly hourly = getHourly();
-        return getForecast(hourly);
+        FIODaily daily = getDaily();
+        return getForecast(hourly, daily);
     }
 
-    public History getHistory() throws LocationException, ForecastException {
-        Arrays.asList(1, 2, 3).stream().forEach(hour -> forecastIo.setTime(hour+""));
-        return null;
-    }
 
-    private Forecast getForecast(FIOHourly hourly) {
-        FIODataPoint dataPoint = getDataPointWithHighestProbabilityOfRain(hourly);
-        return new Forecast(dataPoint.precipProbability() * 100, dataPoint.precipIntensity());
+    private Forecast getForecast(FIOHourly hourly, FIODaily daily) {
+        FIODataPoint today = daily.getDay(0);
+        FIODataPoint rainiestHour = getDataPointWithHighestProbabilityOfRain(hourly);
+
+        return new Forecast(rainiestHour.precipProbability() * 100,
+                rainiestHour.precipIntensity(), today.temperatureMax().floatValue());
     }
 
     private FIODataPoint getDataPointWithHighestProbabilityOfRain(FIOHourly hourly) {
@@ -55,7 +56,14 @@ public class ForecastIoForecastService {
     }
 
     private FIOHourly getHourly() throws LocationException, ForecastException {
-        forecastIo.getForecast(this.location.getLatitude() + "", this.location.getLongitude() + "");
         return new FIOHourly(forecastIo);
+    }
+
+    private FIODaily getDaily() {
+        return new FIODaily(forecastIo);
+    }
+
+    private boolean updateForecast() {
+        return forecastIo.getForecast(this.location.getLatitude() + "", this.location.getLongitude() + "");
     }
 }
