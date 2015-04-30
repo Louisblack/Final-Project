@@ -19,14 +19,15 @@ public class ForecastIoHistoryService {
 
     private Location location;
 
+    public static final List<Integer> MINUTES_TO_LOOK_BACK =
+            Arrays.asList(15, 30, 45, 60, 75, 90, 105, 120);
+
     @Autowired
     public ForecastIoHistoryService(ForecastIO forecastIo, LocationFinder locationFinder) {
         this.forecastIo = forecastIo;
         this.locationFinder = locationFinder;
     }
 
-    public static final List<Integer> MINUTES_TO_LOOK_BACK =
-            Arrays.asList(15, 30, 45, 60, 75, 90, 105, 120, 1440);
 
     @PostConstruct
     public void findLocation() throws LocationException {
