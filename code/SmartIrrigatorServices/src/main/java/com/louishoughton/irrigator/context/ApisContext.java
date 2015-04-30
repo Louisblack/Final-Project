@@ -1,16 +1,15 @@
 package com.louishoughton.irrigator.context;
 
+import com.github.dvdme.ForecastIOLib.ForecastIO;
+import com.google.maps.GeoApiContext;
+import com.louishoughton.irrigator.forecast.GoogleMapsLocationFinder;
+import com.louishoughton.irrigator.forecast.LocationFinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-
-import com.github.dvdme.ForecastIOLib.ForecastIO;
-import com.google.maps.GeoApiContext;
-import com.louishoughton.irrigator.forecast.GoogleMapsLocationFinder;
-import com.louishoughton.irrigator.forecast.LocationFinder;
 
 
 
@@ -38,4 +37,5 @@ public class ApisContext {
     public LocationFinder locationFinder() {
         return new GoogleMapsLocationFinder(geoApiContext(), env.getProperty("postcode"));
     }
+
 }

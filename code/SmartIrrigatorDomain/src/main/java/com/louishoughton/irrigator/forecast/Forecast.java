@@ -1,5 +1,7 @@
 package com.louishoughton.irrigator.forecast;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Forecast {
 
     private double chanceOfRainPercentage;
@@ -18,5 +20,11 @@ public class Forecast {
     public double getInchesPerHour() {
         return inchesPerHour;
     }
-    
+
+
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }
