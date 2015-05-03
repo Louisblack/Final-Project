@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 
+import com.louishoughton.irrigator.forecast.WeatherService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,11 +25,13 @@ public class BasicSchedulerTest {
     @Mock 
     private TaskScheduler taskScheduler;
     @Mock
+    private WeatherService weatherService;
+    @Mock
     private JobFactory jobFactory;
     
     @Before
     public void setup() {
-        job = new IrrigationJob(null);
+        job = new IrrigationJob(weatherService, null);
         when(jobFactory.newJob()).thenReturn(job);
         scheduler = new BasicScheduler(taskScheduler, jobFactory);
     }

@@ -19,7 +19,7 @@ public class ForecastIoWeatherServiceTest {
     @Test
     @Ignore
     public void test() throws LocationException, ForecastException {
-        Forecast forecast = service.getForecast();
+        TodaysWeather forecast = service.getTodaysWeather();
         System.out.print(forecast);
     }
 

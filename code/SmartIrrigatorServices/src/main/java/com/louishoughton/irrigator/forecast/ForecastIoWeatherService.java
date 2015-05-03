@@ -16,16 +16,16 @@ public class ForecastIoWeatherService implements WeatherService {
         this.historyService = historyService;
     }
 
+    @Override
     public TodaysWeather getTodaysWeather() throws LocationException, ForecastException {
         return new TodaysWeather(getForecast());
     }
 
-    @Override
-    public Forecast getForecast() throws LocationException, ForecastException {
+    private Forecast getForecast() throws LocationException, ForecastException {
         return forecastService.getForecast();
     }
 
-    public History getHistory() throws LocationException, ForecastException {
+    private History getHistory() throws LocationException, ForecastException {
         return historyService.getHistory();
     }
     

@@ -3,5 +3,5 @@ package com.louishoughton.irrigator.forecast;
 
 public interface WeatherService {
 
-    Forecast getForecast() throws LocationException, ForecastException;
+    TodaysWeather getTodaysWeather() throws LocationException, ForecastException;
 }
