@@ -1,13 +1,6 @@
 package com.louishoughton.irrigator.web;
 
-import static com.louishoughton.irrigator.web.IrrigationRequestDispatcherImpl.NODE_BASE_URL_PROPERTY;
-import static com.louishoughton.irrigator.web.IrrigationRequestDispatcherImpl.NODE_IRRIGATION_END_POINT_PROPERTY;
-import static org.mockito.Mockito.verify;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Properties;
-
+import com.louishoughton.irrigator.valve.NodeConnectionException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,7 +8,13 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.louishoughton.irrigator.valve.NodeConnectionException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Properties;
+
+import static com.louishoughton.irrigator.web.IrrigationRequestDispatcherImpl.NODE_BASE_URL_PROPERTY;
+import static com.louishoughton.irrigator.web.IrrigationRequestDispatcherImpl.NODE_IRRIGATION_END_POINT_PROPERTY;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IrrigationRequestDispatcherImplTest {

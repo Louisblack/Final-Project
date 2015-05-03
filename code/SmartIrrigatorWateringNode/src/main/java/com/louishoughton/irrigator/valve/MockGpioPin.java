@@ -1,12 +1,11 @@
 package com.louishoughton.irrigator.valve;
 
-import org.springframework.stereotype.Component;
-
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioProvider;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.impl.GpioPinImpl;
+import org.springframework.stereotype.Component;
 
 @Component
 public class MockGpioPin extends GpioPinImpl {

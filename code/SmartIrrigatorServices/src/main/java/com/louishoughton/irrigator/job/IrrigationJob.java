@@ -1,16 +1,18 @@
 package com.louishoughton.irrigator.job;
 
-import com.louishoughton.irrigator.forecast.*;
+import com.louishoughton.irrigator.forecast.ForecastException;
+import com.louishoughton.irrigator.forecast.LocationException;
+import com.louishoughton.irrigator.forecast.TodaysWeather;
+import com.louishoughton.irrigator.forecast.WeatherService;
+import com.louishoughton.irrigator.web.IrrigationRequest;
+import com.louishoughton.irrigator.web.IrrigationRequestDispatcher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.louishoughton.irrigator.valve.NodeConnectionException;
-import com.louishoughton.irrigator.web.IrrigationRequest;
-import com.louishoughton.irrigator.web.IrrigationRequestDispatcher;
-
 import java.util.Optional;
 
-import static java.util.Optional.*;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 
 public class IrrigationJob implements Runnable {
 

@@ -1,21 +1,20 @@
 package com.louishoughton.irrigator.scheduler;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.time.LocalDateTime;
-
 import com.louishoughton.irrigator.forecast.WeatherService;
+import com.louishoughton.irrigator.job.IrrigationJob;
+import com.louishoughton.irrigator.job.JobFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.louishoughton.irrigator.job.IrrigationJob;
-import com.louishoughton.irrigator.job.JobFactory;
+import java.time.LocalDateTime;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BasicSchedulerTest {

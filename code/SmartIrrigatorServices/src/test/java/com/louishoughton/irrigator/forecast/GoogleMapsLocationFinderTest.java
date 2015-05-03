@@ -1,8 +1,10 @@
 package com.louishoughton.irrigator.forecast;
 
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
-
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.Geometry;
+import com.google.maps.model.LatLng;
+import com.louishoughton.irrigator.forecast.GoogleMapsLocationFinder.GoogleGeoCodingConnector;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +12,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.google.maps.GeoApiContext;
-import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.Geometry;
-import com.google.maps.model.LatLng;
-import com.louishoughton.irrigator.forecast.GoogleMapsLocationFinder.GoogleGeoCodingConnector;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GoogleMapsLocationFinderTest {

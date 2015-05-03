@@ -1,14 +1,14 @@
 package com.louishoughton.irrigator.valve;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Date;
+
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.Test;
 
 public class GpioControlledValveTest {
 

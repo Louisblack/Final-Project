@@ -1,9 +1,6 @@
 package com.louishoughton.irrigator.web;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Properties;
-
+import com.louishoughton.irrigator.valve.NodeConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.louishoughton.irrigator.valve.NodeConnectionException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Properties;
 
 @Component
 public class IrrigationRequestDispatcherImpl implements IrrigationRequestDispatcher {

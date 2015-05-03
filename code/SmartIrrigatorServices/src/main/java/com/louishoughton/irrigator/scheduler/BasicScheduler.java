@@ -1,11 +1,10 @@
 package com.louishoughton.irrigator.scheduler;
 
-import java.time.LocalDateTime;
-
+import com.louishoughton.irrigator.job.JobFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.louishoughton.irrigator.job.JobFactory;
+import java.time.LocalDateTime;
 
 @Component
 public class BasicScheduler extends AbstractScheduler {

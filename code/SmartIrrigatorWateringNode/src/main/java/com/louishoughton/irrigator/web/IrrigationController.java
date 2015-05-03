@@ -1,5 +1,7 @@
 package com.louishoughton.irrigator.web;
 
+import com.louishoughton.irrigator.valve.IrrigationValveException;
+import com.louishoughton.irrigator.valve.Valve;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.louishoughton.irrigator.valve.IrrigationValveException;
-import com.louishoughton.irrigator.valve.Valve;
 
 @RestController
 @RequestMapping("/irrigate")

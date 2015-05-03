@@ -1,10 +1,9 @@
 package com.louishoughton.irrigator.scheduler;
 
-import java.time.LocalDateTime;
-
+import com.louishoughton.irrigator.job.JobFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.louishoughton.irrigator.job.JobFactory;
+import java.time.LocalDateTime;
 
 public abstract class AbstractScheduler implements Scheduler {
 

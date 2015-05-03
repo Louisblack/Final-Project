@@ -9,12 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.louishoughton.irrigator.forecast.TodaysWeather.LIGHT_RAIN;
 import static com.louishoughton.irrigator.forecast.TodaysWeather.MINIMUM_CHANCE_OF_RAIN;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IrrigationJobTest {

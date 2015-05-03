@@ -1,10 +1,9 @@
 package com.louishoughton.irrigator.job;
 
 import com.louishoughton.irrigator.forecast.WeatherService;
+import com.louishoughton.irrigator.web.IrrigationRequestDispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.louishoughton.irrigator.web.IrrigationRequestDispatcher;
 
 @Component
 public class JobFactoryImpl implements JobFactory {
