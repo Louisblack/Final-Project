@@ -85,7 +85,6 @@
 								<includeTestSourceDirectory>true</includeTestSourceDirectory>
 								<consoleOutput>true</consoleOutput>
 								<failsOnError>true</failsOnError>
-								<linkXRef>false</linkXRef>
 								<violationSeverity>warning</violationSeverity>
 							</configuration>
 							<goals>
@@ -193,6 +192,16 @@
 				<artifactId>spring-context</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>

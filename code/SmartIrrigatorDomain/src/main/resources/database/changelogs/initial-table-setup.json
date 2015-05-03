@@ -29,6 +29,24 @@
                                         }
 
                                     }
+                                },
+                                {
+                                    "column": {
+                                        "name": "forecast_Id",
+                                        "type": "integer",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "irrigationRequest_id",
+                                        "type": "integer",
+                                        "constraints": {
+                                            "nullable": true
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -44,15 +62,6 @@
                                         "autoIncrement": true,
                                         "constraints": {
                                             "primaryKey": true,
-                                            "nullable": false
-                                        }
-                                    }
-                                },
-                                {
-                                    "column": {
-                                        "name": "executionId",
-                                        "type": "integer",
-                                        "constraints": {
                                             "nullable": false
                                         }
                                     }
@@ -89,7 +98,7 @@
                     },
                     {
                         "createTable": {
-                            "tableName": "request",
+                            "tableName": "irrigationrequest",
                             "columns": [
                                 {
                                     "column": {
@@ -98,15 +107,6 @@
                                         "autoIncrement": true,
                                         "constraints": {
                                             "primaryKey": true,
-                                            "nullable": false
-                                        }
-                                    }
-                                },
-                                {
-                                    "column": {
-                                        "name": "executionId",
-                                        "type": "integer",
-                                        "constraints": {
                                             "nullable": false
                                         }
                                     }
@@ -140,7 +140,7 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "executionId",
+                                        "name": "execution_Id",
                                         "type": "integer",
                                         "constraints": {
                                             "nullable": false
