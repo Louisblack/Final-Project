@@ -1,0 +1,166 @@
+{
+    "databaseChangeLog": [
+        {
+            "changeSet": {
+                "id": "201505031151",
+                "author": "lhoughton",
+                "changes": [
+                    {
+                        "createTable": {
+                            "tableName": "execution",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "id",
+                                        "type": "integer",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "dateRun",
+                                        "type": "date",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "createTable": {
+                            "tableName": "forecast",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "id",
+                                        "type": "integer",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "executionId",
+                                        "type": "integer",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "chanceOfRainPercentage",
+                                        "type": "numeric",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "inchesPerHour",
+                                        "type": "numeric",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "maximumTemperature",
+                                        "type": "numeric",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "createTable": {
+                            "tableName": "request",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "id",
+                                        "type": "integer",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "executionId",
+                                        "type": "integer",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "seconds",
+                                        "type": "integer",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "createTable": {
+                            "tableName": "error",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "id",
+                                        "type": "integer",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "executionId",
+                                        "type": "integer",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "message",
+                                        "type": "varchar(255)",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

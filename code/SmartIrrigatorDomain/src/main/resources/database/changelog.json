@@ -1,0 +1,9 @@
+{
+    "databaseChangeLog": [
+        {
+            "include": {
+                "file": "src/main/resources/database/changelogs/initial-table-setup.json"
+            }
+        }
+    ]
+}
