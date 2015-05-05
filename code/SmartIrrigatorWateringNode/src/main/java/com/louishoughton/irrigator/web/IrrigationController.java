@@ -31,7 +31,7 @@ public class IrrigationController {
             valve.openFor(request.getSeconds());
         } catch (IrrigationValveException e) {
             LOG.error(e);
-            return new IrrigationResponse(false, new IrrigationError(e.getMessage()));
+            return new IrrigationResponse(false, new Error(e.getMessage()));
         }
         return new IrrigationResponse(true);
     }

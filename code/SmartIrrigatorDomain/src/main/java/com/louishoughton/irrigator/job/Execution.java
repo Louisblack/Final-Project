@@ -2,6 +2,11 @@ package com.louishoughton.irrigator.job;
 
 import com.louishoughton.irrigator.forecast.Forecast;
 import com.louishoughton.irrigator.web.IrrigationRequest;
+import com.louishoughton.irrigator.web.Error;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Immutable;
 
@@ -10,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -36,16 +43,19 @@ public class Execution {
 
     @OneToMany(mappedBy = "execution")
     @Cascade(SAVE_UPDATE)
-    private List<com.louishoughton.irrigator.job.Error> errors;
+    private List<com.louishoughton.irrigator.web.Error> errors;
 
     public Execution() {
         this.dateRun = new Date();
     }
 
+    public Execution(Forecast forecast) {
+        this.forecast = forecast;
+    }
+
     public Execution(Forecast forecast, IrrigationRequest irrigationRequest) {
         this.forecast = forecast;
         this.irrigationRequest = irrigationRequest;
-        this.dateRun = new Date();
     }
 
     public Execution(Forecast forecast, IrrigationRequest irrigationRequest, List<Error> errors) {
@@ -55,12 +65,27 @@ public class Execution {
 
     }
 
+    public Execution(Error error, Error... errors) {
+        this.errors = new ArrayList<>();
+        this.errors.add(error);
+        this.errors.addAll(Arrays.asList(errors));
+    }
+
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getDateRun() {
+        return dateRun;
+    }
+
+    public void setDateRun(Date dateRun) {
+        this.dateRun = dateRun;
     }
 
     public Forecast getForecast() {
@@ -85,5 +110,20 @@ public class Execution {
 
     public void setErrors(List<Error> errors) {
         this.errors = errors;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

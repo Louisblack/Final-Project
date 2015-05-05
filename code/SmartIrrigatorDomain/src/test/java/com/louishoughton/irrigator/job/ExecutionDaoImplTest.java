@@ -4,6 +4,7 @@ package com.louishoughton.irrigator.job;
 import com.louishoughton.irrigator.context.PersistenceContext;
 import com.louishoughton.irrigator.context.TestDataSourceContext;
 import com.louishoughton.irrigator.forecast.Forecast;
+import com.louishoughton.irrigator.web.Error;
 import com.louishoughton.irrigator.web.IrrigationRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
