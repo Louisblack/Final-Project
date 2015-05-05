@@ -34,7 +34,7 @@ public class Execution {
     @Cascade(SAVE_UPDATE)
     private IrrigationRequest irrigationRequest;
 
-    @OneToMany
+    @OneToMany(mappedBy = "execution")
     @Cascade(SAVE_UPDATE)
     private List<com.louishoughton.irrigator.job.Error> errors;
 
@@ -46,6 +46,13 @@ public class Execution {
         this.forecast = forecast;
         this.irrigationRequest = irrigationRequest;
         this.dateRun = new Date();
+    }
+
+    public Execution(Forecast forecast, IrrigationRequest irrigationRequest, List<Error> errors) {
+        this(forecast, irrigationRequest);
+        this.errors = errors;
+        errors.stream().forEach(error -> error.setExecution(this));
+
     }
 
     public int getId() {

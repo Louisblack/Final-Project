@@ -11,8 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.transaction.Transactional;
+import java.util.Arrays;
+
 import static com.louishoughton.irrigator.forecast.TodaysWeather.HEAVY_RAIN;
 import static com.louishoughton.irrigator.forecast.TodaysWeather.MINIMUM_CHANCE_OF_RAIN;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
@@ -46,5 +50,21 @@ public class ExecutionDaoImplTest {
         Execution executionFromDb = dao.get(execution.getId());
 
         assertThat(execution, not(sameInstance(executionFromDb)));
+    }
+
+    @Test
+    @Transactional
+    public void should_save_errors() throws Exception {
+        IrrigationRequest irrigationRequest = new IrrigationRequest(20);
+        Forecast forecast = new Forecast(MINIMUM_CHANCE_OF_RAIN, HEAVY_RAIN, 20);
+        Execution execution =
+                new Execution(forecast,
+                              irrigationRequest,
+                              Arrays.asList(new Error("Oops")));
+        dao.save(execution);
+
+        Execution executionFromDb = dao.get(execution.getId());
+
+        assertThat(executionFromDb.getErrors().size(), equalTo(1));
     }
 }

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Forecast {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private int id;
     private double chanceOfRainPercentage;
     private double inchesPerHour;
