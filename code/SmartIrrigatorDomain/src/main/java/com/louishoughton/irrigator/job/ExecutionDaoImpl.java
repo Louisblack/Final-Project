@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 
 @Repository
 public class ExecutionDaoImpl {
@@ -18,6 +19,7 @@ public class ExecutionDaoImpl {
 
     @Transactional
     public void save(Execution execution) {
+        execution.setDateRun(new Date());
         sessionFactory.getCurrentSession().save(execution);
     }
 

@@ -15,6 +15,10 @@ public class TodaysWeather {
         this.forecast = forecast;
     }
 
+    public Forecast getForecast() {
+        return forecast;
+    }
+
     public boolean shouldIWater() {
         return chanceOfRainBelowMinimum() || onlyLightRain();
     }

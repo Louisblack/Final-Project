@@ -44,7 +44,7 @@
                                         "name": "irrigationRequest_id",
                                         "type": "integer",
                                         "constraints": {
-                                            "nullable": true
+                                            "nullable": false
                                         }
                                     }
                                 }

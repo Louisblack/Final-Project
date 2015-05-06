@@ -65,7 +65,7 @@ public class IrrigationControllerTest {
         String message = "it went wrong";
         doThrow(new IrrigationValveException(message)).when(valve).openFor(seconds);
         IrrigationResponse response = controller.irrigate(new IrrigationRequest(seconds));
-        IrrigationError error = response.getErrors().get(0);
+        Error error = response.getErrors().get(0);
         assertThat(error.getMessage(), equalTo(message));
     }
 

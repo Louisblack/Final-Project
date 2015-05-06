@@ -30,7 +30,7 @@ public class BasicSchedulerTest {
     
     @Before
     public void setup() {
-        job = new IrrigationJob(weatherService, null);
+        job = new IrrigationJob(weatherService, null, null);
         when(jobFactory.newJob()).thenReturn(job);
         scheduler = new BasicScheduler(taskScheduler, jobFactory);
     }
