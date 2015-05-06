@@ -4,8 +4,10 @@ import com.louishoughton.irrigator.forecast.Forecast;
 import com.louishoughton.irrigator.forecast.LocationException;
 import com.louishoughton.irrigator.forecast.TodaysWeather;
 import com.louishoughton.irrigator.forecast.WeatherService;
-import com.louishoughton.irrigator.web.*;
 import com.louishoughton.irrigator.web.Error;
+import com.louishoughton.irrigator.web.IrrigationRequest;
+import com.louishoughton.irrigator.web.IrrigationRequestDispatcher;
+import com.louishoughton.irrigator.web.IrrigationResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,15 +16,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.louishoughton.irrigator.forecast.TodaysWeather.LIGHT_RAIN;
 import static com.louishoughton.irrigator.forecast.TodaysWeather.MINIMUM_CHANCE_OF_RAIN;
-<<<<<<< HEAD
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-=======
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
->>>>>>> 1d83f1c0042455af67ad70091d6618afda114b67
 
 @RunWith(MockitoJUnitRunner.class)
 public class IrrigationJobTest {
