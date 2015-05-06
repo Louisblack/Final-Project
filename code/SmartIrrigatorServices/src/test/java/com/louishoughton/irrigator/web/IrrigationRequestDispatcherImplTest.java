@@ -29,12 +29,9 @@ public class IrrigationRequestDispatcherImplTest {
         final String endPoint = "/api/irrigate";
         final URI uri = new URI(url + endPoint);
         final IrrigationRequest request = new IrrigationRequest();
-        final Properties properties = new Properties();
-        properties.setProperty(NODE_BASE_URL_PROPERTY, url);
-        properties.setProperty(NODE_IRRIGATION_END_POINT_PROPERTY, endPoint);
 
         IrrigationRequestDispatcherImpl dispatcher = 
-                new IrrigationRequestDispatcherImpl(restTemplate, properties);
+                new IrrigationRequestDispatcherImpl(restTemplate, url, endPoint);
         
         dispatcher.dispatch(request);
         

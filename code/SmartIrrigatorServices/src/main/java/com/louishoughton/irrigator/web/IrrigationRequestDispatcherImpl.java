@@ -12,7 +12,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
-@Component
 public class IrrigationRequestDispatcherImpl implements IrrigationRequestDispatcher {
 
     private RestTemplate restTemplate;
@@ -26,14 +25,14 @@ public class IrrigationRequestDispatcherImpl implements IrrigationRequestDispatc
     
     private static final Logger LOG = LogManager.getLogger(IrrigationRequestDispatcherImpl.class);
     
-    @Autowired
-    public IrrigationRequestDispatcherImpl(Properties properties) {
-        this.nodeBaseUrl = properties.getProperty(NODE_BASE_URL_PROPERTY);
-        this.irrigationEndPoint = properties.getProperty(NODE_IRRIGATION_END_POINT_PROPERTY);
+
+    public IrrigationRequestDispatcherImpl(String url, String endPoint) {
+        this.nodeBaseUrl = url;
+        this.irrigationEndPoint = endPoint;
     }
 
-    public IrrigationRequestDispatcherImpl(RestTemplate restTemplate, Properties properties) {
-        this(properties);
+    public IrrigationRequestDispatcherImpl(RestTemplate restTemplate, String url, String endPoint) {
+        this(url, endPoint);
         this.restTemplate = restTemplate;
     }
 
