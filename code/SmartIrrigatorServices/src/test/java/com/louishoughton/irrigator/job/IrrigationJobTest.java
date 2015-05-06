@@ -77,7 +77,7 @@ public class IrrigationJobTest {
     }
 
     @Test
-    public void should_save_error_if_eception_thrown() throws Exception {
+    public void should_save_error_if_exception_thrown() throws Exception {
         String message = "Oops";
         doThrow(new LocationException(message)).when(weatherService).getTodaysWeather();
         job.run();
@@ -103,6 +103,19 @@ public class IrrigationJobTest {
         job.run();
 
         verify(executionDao).save(new Execution(forecast, request, irrigationResponse.getErrors()));
+    }
 
+    @Test
+    public void should_save_forecast() throws Exception {
+        Forecast forecast = new Forecast(0.1, 0.1, 20);
+
+        TodaysWeather todaysWeather = mock(TodaysWeather.class);
+        when(todaysWeather.shouldIWater()).thenReturn(false);
+        when(todaysWeather.getForecast()).thenReturn(forecast);
+        when(weatherService.getTodaysWeather()).thenReturn(todaysWeather);
+
+        job.run();
+
+        verify(executionDao).save(new Execution(forecast));
     }
 }
