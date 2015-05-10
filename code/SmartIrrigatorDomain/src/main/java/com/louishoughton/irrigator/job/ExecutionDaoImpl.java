@@ -2,13 +2,14 @@ package com.louishoughton.irrigator.job;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.Date;
 
-@Repository
-public class ExecutionDaoImpl {
+@Component
+public class ExecutionDaoImpl implements ExecutionDao {
 
     private SessionFactory sessionFactory;
 

@@ -27,7 +27,7 @@ import static org.junit.Assert.assertThat;
 public class ExecutionDaoImplTest {
 
     @Autowired
-    private ExecutionDaoImpl dao;
+    private ExecutionDao dao;
 
     @Test
     public void should_save_an_execution() throws Exception {
