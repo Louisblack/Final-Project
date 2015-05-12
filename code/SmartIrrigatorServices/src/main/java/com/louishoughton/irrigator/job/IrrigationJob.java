@@ -65,7 +65,10 @@ public class IrrigationJob implements Runnable {
 
     private void saveExecution(TodaysWeather todaysWeather, IrrigationRequest request,
                                IrrigationResponse response) {
-        executionDao.save(new Execution(todaysWeather.getForecast(), request, response.getErrors()));
+        executionDao.save(new Execution(todaysWeather.getForecast(),
+                                        todaysWeather.getHistory(),
+                                        request,
+                                        response.getErrors()));
     }
 
     private void saveExecution(TodaysWeather todaysWeather) {

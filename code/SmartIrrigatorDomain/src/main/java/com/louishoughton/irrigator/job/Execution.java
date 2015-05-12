@@ -1,6 +1,7 @@
 package com.louishoughton.irrigator.job;
 
 import com.louishoughton.irrigator.forecast.Forecast;
+import com.louishoughton.irrigator.forecast.History;
 import com.louishoughton.irrigator.web.IrrigationRequest;
 import com.louishoughton.irrigator.web.Error;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -37,6 +38,11 @@ public class Execution {
     @Cascade(SAVE_UPDATE)
     private Forecast forecast;
 
+
+    @OneToOne
+    @Cascade(SAVE_UPDATE)
+    private History history;
+
     @OneToOne
     @Cascade(SAVE_UPDATE)
     private IrrigationRequest irrigationRequest;
@@ -53,13 +59,15 @@ public class Execution {
         this.forecast = forecast;
     }
 
-    public Execution(Forecast forecast, IrrigationRequest irrigationRequest) {
+    public Execution(Forecast forecast, History history, IrrigationRequest irrigationRequest) {
         this.forecast = forecast;
         this.irrigationRequest = irrigationRequest;
+        this.history = history;
     }
 
-    public Execution(Forecast forecast, IrrigationRequest irrigationRequest, List<Error> errors) {
-        this(forecast, irrigationRequest);
+    public Execution(Forecast forecast, History history, IrrigationRequest irrigationRequest,
+                     List<Error> errors) {
+        this(forecast, history, irrigationRequest);
         this.errors = errors;
         errors.stream().forEach(error -> error.setExecution(this));
 
@@ -94,6 +102,14 @@ public class Execution {
 
     public void setForecast(Forecast forecast) {
         this.forecast = forecast;
+    }
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
     }
 
     public IrrigationRequest getIrrigationRequest() {

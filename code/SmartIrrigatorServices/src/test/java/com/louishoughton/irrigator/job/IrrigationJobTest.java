@@ -92,18 +92,22 @@ public class IrrigationJobTest {
         IrrigationRequest request = new IrrigationRequest(howLongToWater);
         IrrigationResponse irrigationResponse = new IrrigationResponse();
         Forecast forecast = new Forecast(0.1, 0.1, 20);
+        History history = new History(0);
 
         TodaysWeather todaysWeather = mock(TodaysWeather.class);
         when(todaysWeather.shouldIWater()).thenReturn(true);
         when(todaysWeather.howLongShouldIWater()).thenReturn(howLongToWater);
         when(todaysWeather.getForecast()).thenReturn(forecast);
+        when(todaysWeather.getHistory()).thenReturn(history);
         when(weatherService.getTodaysWeather()).thenReturn(todaysWeather);
         when(irrigationRequestDispatcher.dispatch(request)).
                 thenReturn(irrigationResponse);
 
         job.run();
 
-        verify(executionDao).save(new Execution(forecast, request, irrigationResponse.getErrors()));
+        Execution execution =
+                new Execution(forecast, history, request, irrigationResponse.getErrors());
+        verify(executionDao).save(execution);
     }
 
     @Test

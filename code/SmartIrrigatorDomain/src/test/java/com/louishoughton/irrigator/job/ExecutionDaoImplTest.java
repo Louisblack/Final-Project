@@ -4,6 +4,7 @@ package com.louishoughton.irrigator.job;
 import com.louishoughton.irrigator.context.PersistenceContext;
 import com.louishoughton.irrigator.context.TestDataSourceContext;
 import com.louishoughton.irrigator.forecast.Forecast;
+import com.louishoughton.irrigator.forecast.History;
 import com.louishoughton.irrigator.web.Error;
 import com.louishoughton.irrigator.web.IrrigationRequest;
 import org.junit.Test;
@@ -34,7 +35,8 @@ public class ExecutionDaoImplTest {
 
         IrrigationRequest irrigationRequest = new IrrigationRequest(20);
         Forecast forecast = new Forecast(MINIMUM_CHANCE_OF_RAIN, HEAVY_RAIN, 20);
-        Execution execution = new Execution(forecast, irrigationRequest);
+        History history = new History(MINIMUM_CHANCE_OF_RAIN);
+        Execution execution = new Execution(forecast, history, irrigationRequest);
         dao.save(execution);
 
         assertThat(execution.getId(), not(0));
@@ -45,7 +47,8 @@ public class ExecutionDaoImplTest {
 
         IrrigationRequest irrigationRequest = new IrrigationRequest(20);
         Forecast forecast = new Forecast(MINIMUM_CHANCE_OF_RAIN, HEAVY_RAIN, 20);
-        Execution execution = new Execution(forecast, irrigationRequest);
+        History history = new History(MINIMUM_CHANCE_OF_RAIN);
+        Execution execution = new Execution(forecast, history, irrigationRequest);
         dao.save(execution);
 
         Execution executionFromDb = dao.get(execution.getId());
@@ -58,8 +61,10 @@ public class ExecutionDaoImplTest {
     public void should_save_errors() throws Exception {
         IrrigationRequest irrigationRequest = new IrrigationRequest(20);
         Forecast forecast = new Forecast(MINIMUM_CHANCE_OF_RAIN, HEAVY_RAIN, 20);
+        History history = new History(MINIMUM_CHANCE_OF_RAIN);
         Execution execution =
                 new Execution(forecast,
+                              history,
                               irrigationRequest,
                               Arrays.asList(new Error("Oops")));
         dao.save(execution);

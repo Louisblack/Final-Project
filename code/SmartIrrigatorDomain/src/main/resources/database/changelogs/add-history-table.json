@@ -1,0 +1,57 @@
+{
+    "databaseChangeLog": [
+        {
+            "changeSet": {
+                "id": "201505122016",
+                "author": "lhoughton",
+                "changes": [
+                    {
+                        "addColumn": {
+                            "tableName": "execution",
+                            "columns": [
+
+                                {
+                                    "column": {
+                                        "name": "history_Id",
+                                        "type": "integer",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+
+                            ]
+                        }
+                    },
+                    {
+                        "createTable": {
+                            "tableName": "history",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "id",
+                                        "type": "integer",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "highestInchesPerHour",
+                                        "type": "numeric",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

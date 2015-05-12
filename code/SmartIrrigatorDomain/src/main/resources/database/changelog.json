@@ -4,6 +4,11 @@
             "include": {
                 "file": "src/main/resources/database/changelogs/initial-table-setup.json"
             }
+        },
+        {
+            "include": {
+                "file": "src/main/resources/database/changelogs/add-history-table.json"
+            }
         }
     ]
 }
