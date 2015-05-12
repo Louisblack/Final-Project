@@ -1,7 +1,15 @@
 package com.louishoughton.irrigator.forecast;
 
-/**
- * Created by Louis on 28/04/15.
- */
 public class History {
+
+    private double highestInchesPerHour;
+
+
+    public History(double highestInchesPerHour) {
+        this.highestInchesPerHour = highestInchesPerHour;
+    }
+
+    public double getHighestInchesPerHour() {
+        return highestInchesPerHour;
+    }
 }

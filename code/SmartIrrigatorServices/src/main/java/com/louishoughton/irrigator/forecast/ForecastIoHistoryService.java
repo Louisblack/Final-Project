@@ -2,25 +2,29 @@ package com.louishoughton.irrigator.forecast;
 
 import com.github.dvdme.ForecastIOLib.FIOCurrently;
 import com.github.dvdme.ForecastIOLib.ForecastIO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.time.Instant;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Component
 public class ForecastIoHistoryService {
 
+    public static final int MINUTES_IN_8_HOURS = 480;
+
+    private static final Logger LOG = LogManager.getLogger(ForecastIoHistoryService.class);
+
     private ForecastIO forecastIo;
     private LocationFinder locationFinder;
-
     private Location location;
 
-    public static final List<Integer> MINUTES_TO_LOOK_BACK =
-            Arrays.asList(15, 30, 45, 60, 75, 90, 105, 120);
+    public List<Integer> minutesToLookBack = new ArrayList<>();
 
     @Autowired
     public ForecastIoHistoryService(ForecastIO forecastIo, LocationFinder locationFinder) {
@@ -30,25 +34,38 @@ public class ForecastIoHistoryService {
 
 
     @PostConstruct
+    public void init() throws LocationException {
+        setupMinutes();
+        findLocation();
+    }
+
+    public void setupMinutes() {
+        for (int i = 15; i <= MINUTES_IN_8_HOURS; i += 15) {
+            minutesToLookBack.add(i);
+        }
+    }
+
     public void findLocation() throws LocationException {
         this.location = locationFinder.getLocation();
     }
 
     public History getHistory() {
-        MINUTES_TO_LOOK_BACK.stream().forEach(minutes -> {
+        double highestInchesPerHour = minutesToLookBack
+                .stream()
+                .mapToDouble(this::getPrecipitationIntensity)
+                .reduce(0, (a, b) -> b > a ? b : a);
+        return new History(highestInchesPerHour);
+    }
 
-            String time = Instant.now().minusSeconds(minutes * 60).getEpochSecond()+"";
-            System.out.println(time);
-            forecastIo.setTime(time + "");
-            forecastIo.getForecast(location.getLatitude()+"", location.getLongitude()+"");
-            FIOCurrently fioCurrently = new FIOCurrently(forecastIo);
-            System.out.println(minutes + " ago.");
-            System.out.println(fioCurrently.get().precipIntensity());
-            System.out.println(fioCurrently.get().precipProbability());
+    public Double getPrecipitationIntensity(Integer minutes) {
+        Instant instant = Instant.now().minusSeconds(minutes * 60);
+        String time = instant.getEpochSecond() + "";
+        forecastIo.setTime(time + "");
+        forecastIo.getForecast(location.getLatitude() + "", location.getLongitude() + "");
+        FIOCurrently fioCurrently = new FIOCurrently(forecastIo);
 
-            System.out.println("--------");
-
-        });
-        return null;
+        Double precipIntensity = fioCurrently.get().precipIntensity();
+        LOG.info(instant + " - " + precipIntensity);
+        return precipIntensity;
     }
 }

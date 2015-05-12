@@ -1,6 +1,7 @@
 package com.louishoughton.irrigator.job;
 
 import com.louishoughton.irrigator.forecast.Forecast;
+import com.louishoughton.irrigator.forecast.History;
 import com.louishoughton.irrigator.forecast.LocationException;
 import com.louishoughton.irrigator.forecast.TodaysWeather;
 import com.louishoughton.irrigator.forecast.WeatherService;
@@ -46,7 +47,7 @@ public class IrrigationJobTest {
     @Test
     public void should_query_weather_service() throws Exception {
         TodaysWeather todaysWeather =
-                new TodaysWeather(new Forecast(MINIMUM_CHANCE_OF_RAIN, LIGHT_RAIN, 25));
+                new TodaysWeather(new Forecast(MINIMUM_CHANCE_OF_RAIN, LIGHT_RAIN, 25), new History(LIGHT_RAIN));
         when(weatherService.getTodaysWeather()).thenReturn(todaysWeather);
         job.run();
         verify(weatherService).getTodaysWeather();

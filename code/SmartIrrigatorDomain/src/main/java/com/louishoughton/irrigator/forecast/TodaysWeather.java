@@ -10,18 +10,25 @@ public class TodaysWeather {
     public static final int WATER_MULTIPLIER = 3;
 
     private Forecast forecast;
+    private History history;
 
-    public TodaysWeather(Forecast forecast) {
+    public TodaysWeather(Forecast forecast, History history) {
         this.forecast = forecast;
+        this.history = history;
     }
 
     public Forecast getForecast() {
         return forecast;
     }
 
-    public boolean shouldIWater() {
-        return chanceOfRainBelowMinimum() || onlyLightRain();
+    public History getHistory() {
+        return history;
     }
+
+    public boolean shouldIWater() {
+        return (chanceOfRainBelowMinimum() || onlyLightRain()) && notEnoughRainRecently();
+    }
+
 
     public int howLongShouldIWater() {
         if (shouldIWater()) {
@@ -43,4 +50,7 @@ public class TodaysWeather {
         return forecast.getChanceOfRainPercentage() < MINIMUM_CHANCE_OF_RAIN;
     }
 
+    private boolean notEnoughRainRecently() {
+        return history.getHighestInchesPerHour() < MODERATE_RAIN;
+    }
 }

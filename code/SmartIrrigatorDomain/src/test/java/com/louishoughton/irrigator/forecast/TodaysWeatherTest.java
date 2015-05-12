@@ -2,6 +2,7 @@ package com.louishoughton.irrigator.forecast;
 
 import org.junit.Test;
 
+import static com.louishoughton.irrigator.forecast.TodaysWeather.LIGHT_RAIN;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -16,7 +17,7 @@ public class TodaysWeatherTest {
         float maxTemp = 0;
         Forecast forecast = new Forecast(chanceOfRain, inchesPerHour, maxTemp);
 
-        TodaysWeather todaysWeather = new TodaysWeather(forecast);
+        TodaysWeather todaysWeather = new TodaysWeather(forecast, new History(0));
         assertTrue(todaysWeather.shouldIWater());
     }
 
@@ -27,18 +28,37 @@ public class TodaysWeatherTest {
         float maxTemp = 0;
         Forecast forecast = new Forecast(chanceOfRain, inchesPerHour, maxTemp);
 
-        TodaysWeather todaysWeather = new TodaysWeather(forecast);
+        TodaysWeather todaysWeather = new TodaysWeather(forecast, new History(0));
         assertFalse(todaysWeather.shouldIWater());
+    }
+
+    @Test
+    public void should_not_tell_me_to_water_if_rained_recently() throws Exception {
+        TodaysWeather todaysWeather =
+                new TodaysWeather(new Forecast(0, 0, 0), new History(TodaysWeather.MODERATE_RAIN));
+        assertFalse(todaysWeather.shouldIWater());
+    }
+
+    @Test
+    public void should_tell_me_to_water_if_only_light_rain_predicted_lightly_rained_recently()
+            throws Exception {
+        double chanceOfRain = TodaysWeather.MINIMUM_CHANCE_OF_RAIN + 10;
+        double inchesPerHour = LIGHT_RAIN;
+        float maxTemp = 0;
+        Forecast forecast = new Forecast(chanceOfRain, inchesPerHour, maxTemp);
+
+        TodaysWeather todaysWeather = new TodaysWeather(forecast, new History(LIGHT_RAIN));
+        assertTrue(todaysWeather.shouldIWater());
     }
 
     @Test
     public void should_tell_me_to_water_if_only_light_rain_predicted() throws Exception {
         double chanceOfRain = TodaysWeather.MINIMUM_CHANCE_OF_RAIN + 10;
-        double inchesPerHour = TodaysWeather.LIGHT_RAIN;
+        double inchesPerHour = LIGHT_RAIN;
         float maxTemp = 0;
         Forecast forecast = new Forecast(chanceOfRain, inchesPerHour, maxTemp);
 
-        TodaysWeather todaysWeather = new TodaysWeather(forecast);
+        TodaysWeather todaysWeather = new TodaysWeather(forecast, new History(0));
         assertTrue(todaysWeather.shouldIWater());
     }
 
@@ -49,7 +69,7 @@ public class TodaysWeatherTest {
         float maxTemp = 0;
         Forecast forecast = new Forecast(chanceOfRain, inchesPerHour, maxTemp);
 
-        TodaysWeather todaysWeather = new TodaysWeather(forecast);
+        TodaysWeather todaysWeather = new TodaysWeather(forecast, new History(0));
         assertFalse(todaysWeather.shouldIWater());
     }
 
@@ -60,18 +80,18 @@ public class TodaysWeatherTest {
         float maxTemp = 20;
         Forecast forecast = new Forecast(chanceOfRain, inchesPerHour, maxTemp);
 
-        TodaysWeather todaysWeather = new TodaysWeather(forecast);
+        TodaysWeather todaysWeather = new TodaysWeather(forecast, new History(0));
         assertThat(todaysWeather.howLongShouldIWater(), equalTo(0));
     }
 
     @Test
     public void should_use_the_water_multiplier_to_work_out_how_long() throws Exception {
         double chanceOfRain = TodaysWeather.MINIMUM_CHANCE_OF_RAIN + 10;
-        double inchesPerHour = TodaysWeather.LIGHT_RAIN;
+        double inchesPerHour = LIGHT_RAIN;
         float maxTemp = 20;
         Forecast forecast = new Forecast(chanceOfRain, inchesPerHour, maxTemp);
 
-        TodaysWeather todaysWeather = new TodaysWeather(forecast);
+        TodaysWeather todaysWeather = new TodaysWeather(forecast, new History(0));
 
         assertThat(todaysWeather.howLongShouldIWater(), equalTo(60));
     }

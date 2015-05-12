@@ -18,7 +18,7 @@ public class ForecastIoWeatherService implements WeatherService {
 
     @Override
     public TodaysWeather getTodaysWeather() throws LocationException, ForecastException {
-        return new TodaysWeather(getForecast());
+        return new TodaysWeather(getForecast(), getHistory());
     }
 
     private Forecast getForecast() throws LocationException, ForecastException {
