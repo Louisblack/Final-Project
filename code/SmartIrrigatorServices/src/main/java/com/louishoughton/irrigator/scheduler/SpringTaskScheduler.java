@@ -14,7 +14,10 @@ public class SpringTaskScheduler implements TaskScheduler {
     private org.springframework.scheduling.TaskScheduler taskScheduler;
     
     public SpringTaskScheduler() {
-        taskScheduler = new ThreadPoolTaskScheduler();
+        ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+        threadPoolTaskScheduler.setPoolSize(3);
+        threadPoolTaskScheduler.initialize();
+        taskScheduler = threadPoolTaskScheduler;
     }
     
     @Override

@@ -40,6 +40,7 @@ public class IrrigationRequestDispatcherImpl implements IrrigationRequestDispatc
     public IrrigationResponse dispatch(IrrigationRequest request) throws NodeConnectionException {
         URI url = buildUrl();
         try {
+            LOG.info("Dispatching " + request);
             return restTemplate.postForObject(url, request, IrrigationResponse.class);
         } catch (RestClientException e) {
             throw new NodeConnectionException(NODE_CONNECTION_ERROR + url, e);

@@ -37,10 +37,13 @@ public class IrrigationJob implements Runnable {
 
     @Override
     public void run() {
+        LOG.info("Starting job");
         try {
             TodaysWeather todaysWeather = weatherService.getTodaysWeather();
+            LOG.info("Todays weather is " + todaysWeather);
             Optional<IrrigationRequest> request = getIrrigationRequestFromForecast(todaysWeather);
             if (request.isPresent()){
+                LOG.info("Sending request " + request.get());
                 IrrigationResponse response = requestDispatcher.dispatch(request.get());
                 saveExecution(todaysWeather, request.get(), response);
             } else {
@@ -50,6 +53,7 @@ public class IrrigationJob implements Runnable {
             LOG.error(exception);
             saveErroredExecution(exception);
         }
+        LOG.info("Ending job");
     }
 
 
@@ -72,7 +76,7 @@ public class IrrigationJob implements Runnable {
     }
 
     private void saveExecution(TodaysWeather todaysWeather) {
-        executionDao.save(new Execution(todaysWeather.getForecast()));
+        executionDao.save(new Execution(todaysWeather.getForecast(), todaysWeather.getHistory()));
     }
 
     private void saveErroredExecution(Exception exception) {

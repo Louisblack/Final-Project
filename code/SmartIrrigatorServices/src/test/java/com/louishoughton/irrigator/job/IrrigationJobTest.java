@@ -113,14 +113,16 @@ public class IrrigationJobTest {
     @Test
     public void should_save_forecast() throws Exception {
         Forecast forecast = new Forecast(0.1, 0.1, 20);
+        History history = new History(0);
 
         TodaysWeather todaysWeather = mock(TodaysWeather.class);
         when(todaysWeather.shouldIWater()).thenReturn(false);
         when(todaysWeather.getForecast()).thenReturn(forecast);
+        when(todaysWeather.getHistory()).thenReturn(history);
         when(weatherService.getTodaysWeather()).thenReturn(todaysWeather);
 
         job.run();
 
-        verify(executionDao).save(new Execution(forecast));
+        verify(executionDao).save(new Execution(forecast, history));
     }
 }

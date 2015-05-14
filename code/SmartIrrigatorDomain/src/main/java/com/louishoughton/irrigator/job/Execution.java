@@ -10,8 +10,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Immutable;
+import org.hibernate.annotations.LazyCollection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -47,16 +49,18 @@ public class Execution {
     @Cascade(SAVE_UPDATE)
     private IrrigationRequest irrigationRequest;
 
-    @OneToMany(mappedBy = "execution")
+    @OneToMany(mappedBy = "execution", fetch = FetchType.EAGER)
     @Cascade(SAVE_UPDATE)
+
     private List<com.louishoughton.irrigator.web.Error> errors;
 
     public Execution() {
         this.dateRun = new Date();
     }
 
-    public Execution(Forecast forecast) {
+    public Execution(Forecast forecast, History history) {
         this.forecast = forecast;
+        this.history = history;
     }
 
     public Execution(Forecast forecast, History history, IrrigationRequest irrigationRequest) {
@@ -78,6 +82,7 @@ public class Execution {
         this.errors.add(error);
         this.errors.addAll(Arrays.asList(errors));
     }
+
 
 
     public int getId() {

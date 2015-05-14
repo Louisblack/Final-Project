@@ -1,6 +1,11 @@
 package com.louishoughton.irrigator.forecast;
 
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class TodaysWeather {
 
     public static final int MINIMUM_CHANCE_OF_RAIN = 50;
@@ -52,5 +57,20 @@ public class TodaysWeather {
 
     private boolean notEnoughRainRecently() {
         return history.getHighestInchesPerHour() < MODERATE_RAIN;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

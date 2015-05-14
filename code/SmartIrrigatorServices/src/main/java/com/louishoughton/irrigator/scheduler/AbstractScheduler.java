@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public abstract class AbstractScheduler implements Scheduler {
 
-    public static final String MIDNIGHT_CRON_STRING = "0 0 * * *";
+    public static final String MIDNIGHT_CRON_STRING = "* * * * * *";
     
     private final JobFactory jobFactory;
     private final TaskScheduler taskScheduler;
