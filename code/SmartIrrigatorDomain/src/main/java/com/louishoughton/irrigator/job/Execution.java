@@ -2,15 +2,15 @@ package com.louishoughton.irrigator.job;
 
 import com.louishoughton.irrigator.forecast.Forecast;
 import com.louishoughton.irrigator.forecast.History;
-import com.louishoughton.irrigator.web.IrrigationRequest;
 import com.louishoughton.irrigator.web.Error;
+import com.louishoughton.irrigator.web.IrrigationRequest;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.lang3.time.DateUtils;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.LazyCollection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -133,6 +134,14 @@ public class Execution {
         this.errors = errors;
     }
 
+    public Date getDateRunWithNoTime() {
+        return DateUtils.truncate(dateRun, Calendar.DATE);
+    }
+
+    public int getIrrigationDuration() {
+        return irrigationRequest != null ? irrigationRequest.getSeconds() : 0;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);
@@ -147,4 +156,5 @@ public class Execution {
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+
 }
