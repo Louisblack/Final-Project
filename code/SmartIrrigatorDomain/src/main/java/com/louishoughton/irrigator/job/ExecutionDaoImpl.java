@@ -44,4 +44,16 @@ public class ExecutionDaoImpl implements ExecutionDao {
                 .addOrder(Order.desc("dateRun"))
                 .list();
     }
+
+
+    @Override
+    @Transactional
+    public List<Execution> list(int from, int to) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Execution.class)
+                .setFirstResult(from)
+                .setMaxResults(to - from)
+                .addOrder(Order.desc("dateRun"))
+                .list();
+    }
 }

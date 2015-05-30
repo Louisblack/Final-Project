@@ -19,5 +19,6 @@ hs_err_pid*
 
 .DS_Store
 *.iml
-*.idea/*
-.idea
+code/idea/*
+code/.idea
+.idea/codeStyleSettings.xml

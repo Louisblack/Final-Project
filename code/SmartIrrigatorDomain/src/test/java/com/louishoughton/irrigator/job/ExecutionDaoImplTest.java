@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.List;
 
 import static com.louishoughton.irrigator.forecast.TodaysWeather.HEAVY_RAIN;
 import static com.louishoughton.irrigator.forecast.TodaysWeather.MINIMUM_CHANCE_OF_RAIN;
@@ -72,5 +73,25 @@ public class ExecutionDaoImplTest {
         Execution executionFromDb = dao.get(execution.getId());
 
         assertThat(executionFromDb.getErrors().size(), equalTo(1));
+    }
+
+
+    @Test
+    @Transactional
+    public void should_only_retrieve_2_executions() throws Exception {
+        for (int i = 0; i < 5; i++) {
+            IrrigationRequest irrigationRequest = new IrrigationRequest(20 + i);
+            Forecast forecast = new Forecast(MINIMUM_CHANCE_OF_RAIN + i, HEAVY_RAIN + i, 20 + i);
+            History history = new History(MINIMUM_CHANCE_OF_RAIN + i);
+            Execution execution =
+                    new Execution(forecast,
+                            history,
+                            irrigationRequest);
+            dao.save(execution);
+        }
+
+        List<Execution> executions = dao.list(2, 4);
+
+        assertThat(executions.size(), equalTo(2));
     }
 }

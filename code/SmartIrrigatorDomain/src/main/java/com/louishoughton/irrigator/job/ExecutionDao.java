@@ -9,4 +9,6 @@ public interface ExecutionDao {
     Execution get(int id);
 
     List<Execution> list();
+
+    List<Execution> list(int from, int to);
 }
