@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class EmbeddedJetty {
 
-    private static final int DEFAULT_PORT = 8080;
+    private static final int DEFAULT_PORT = 8888;
     private static final String CONTEXT_PATH = "/";
     private static final String CONFIG_LOCATION = "com.louishoughton.irrigator.context";
     private static final String MAPPING_URL = "/*";
