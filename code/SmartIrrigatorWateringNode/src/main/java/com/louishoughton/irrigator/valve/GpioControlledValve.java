@@ -8,6 +8,7 @@ import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,7 +26,8 @@ public class GpioControlledValve implements Valve {
         GpioController gpioController = GpioFactory.getInstance();
         gpioPin = gpioController.provisionDigitalOutputPin(SOLENOID_PIN, PIN_NAME, PinState.LOW);
     }
-    
+
+    @Autowired
     GpioControlledValve(GpioPinDigitalOutput gpioPin) {
         this.gpioPin = gpioPin;
     }

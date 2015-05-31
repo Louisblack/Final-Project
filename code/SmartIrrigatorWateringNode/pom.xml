@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>SmartIrrigatorWateringNode</artifactId>
 	<name>Smart Garden Irrigator Watering Node</name>
+    <packaging>war</packaging>
 	<parent>
 		<groupId>com.louishoughton</groupId>
 		<artifactId>SmartIrrigator</artifactId>
@@ -40,6 +41,16 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.2.10.v20150310</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>9.2.10.v20150310</version>
+        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
