@@ -3,6 +3,7 @@ package com.louishoughton.irrigator.web;
 import com.louishoughton.irrigator.job.Execution;
 import com.louishoughton.irrigator.job.ExecutionDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -10,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
-public class ListExecutionsServiceImpl {
+@Component
+public class ListExecutionsServiceImpl implements ListExecutionsService {
 
     public static final int RECORDS_TO_RETRIEVE = 7;
     private ExecutionDao executionDao;
