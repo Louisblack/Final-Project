@@ -64,6 +64,7 @@ public class ForecastIoForecastService {
     }
 
     private boolean updateForecast() {
-        return forecastIo.getForecast(this.location.getLatitude() + "", this.location.getLongitude() + "");
+        return forecastIo.getForecast(this.location.getLatitude() + "", 
+                this.location.getLongitude() + "");
     }
 }

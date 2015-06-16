@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -34,6 +35,15 @@ public class ExecutionDaoImpl implements ExecutionDao {
     @Transactional
     public Execution get(int id) {
         return (Execution) sessionFactory.getCurrentSession().get(Execution.class, id);
+    }
+
+    @Override
+    @Transactional
+    public List<Execution> get(List<Integer> ids) {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Execution.class)
+                .add(Restrictions.in("id", ids))
+                .list();
     }
 
     @Override

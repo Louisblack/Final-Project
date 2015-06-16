@@ -22,19 +22,6 @@ public class TodaysWeather {
         this.history = history;
     }
 
-    public Forecast getForecast() {
-        return forecast;
-    }
-
-    public History getHistory() {
-        return history;
-    }
-
-    public boolean shouldIWater() {
-        return (chanceOfRainBelowMinimum() || onlyLightRain()) && notEnoughRainRecently();
-    }
-
-
     public int howLongShouldIWater() {
         if (shouldIWater()) {
             return Math.round(forecast.getMaximumTemperature() * WATER_MULTIPLIER);
@@ -42,9 +29,15 @@ public class TodaysWeather {
             return 0;
         }
     }
+    
+    public boolean shouldIWater() {
+        return (chanceOfRainBelowMinimum() || onlyLightRain()) 
+                && notEnoughRainRecently();
+    }
 
     private boolean onlyLightRain() {
-        return chanceOfRainAboveMinimum() && forecast.getInchesPerHour() < MODERATE_RAIN;
+        return chanceOfRainAboveMinimum() 
+                && forecast.getInchesPerHour() < MODERATE_RAIN;
     }
 
     private boolean chanceOfRainAboveMinimum() {
@@ -57,6 +50,14 @@ public class TodaysWeather {
 
     private boolean notEnoughRainRecently() {
         return history.getHighestInchesPerHour() < MODERATE_RAIN;
+    }
+
+    public Forecast getForecast() {
+        return forecast;
+    }
+    
+    public History getHistory() {
+        return history;
     }
 
     @Override

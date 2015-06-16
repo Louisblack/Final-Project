@@ -135,7 +135,8 @@ public class Execution {
     }
 
     public Date getDateRunWithNoTime() {
-        return DateUtils.truncate(dateRun, Calendar.DATE);
+        Date dateCopy = new Date(dateRun.toInstant().toEpochMilli());
+        return DateUtils.truncate(dateCopy, Calendar.DATE);
     }
 
     public int getIrrigationDuration() {

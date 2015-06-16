@@ -23,7 +23,7 @@
                                 {
                                     "column": {
                                         "name": "dateRun",
-                                        "type": "date",
+                                        "type": "datetime",
                                         "constraints": {
                                             "nullable": false
                                         }

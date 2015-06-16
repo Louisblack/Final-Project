@@ -57,15 +57,19 @@ public class ForecastIoHistoryService {
         return new History(highestInchesPerHour);
     }
 
-    public Double getPrecipitationIntensity(Integer minutes) {
+    private Double getPrecipitationIntensity(Integer minutes) {
         Instant instant = Instant.now().minusSeconds(minutes * 60);
+        Double precipIntensity = findHighestIntensityForTime(instant);
+        LOG.info(instant + " - " + precipIntensity);
+        return precipIntensity;
+    }
+
+    private Double findHighestIntensityForTime(Instant instant) {
         String time = instant.getEpochSecond() + "";
         forecastIo.setTime(time + "");
         forecastIo.getForecast(location.getLatitude() + "", location.getLongitude() + "");
         FIOCurrently fioCurrently = new FIOCurrently(forecastIo);
 
-        Double precipIntensity = fioCurrently.get().precipIntensity();
-        LOG.info(instant + " - " + precipIntensity);
-        return precipIntensity;
+        return fioCurrently.get().precipIntensity();
     }
 }

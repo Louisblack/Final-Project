@@ -11,7 +11,8 @@ public class ForecastIoWeatherService implements WeatherService {
     private ForecastIoHistoryService historyService;
 
     @Autowired
-    public ForecastIoWeatherService(ForecastIoForecastService forecastService, ForecastIoHistoryService historyService) {
+    public ForecastIoWeatherService(ForecastIoForecastService forecastService, 
+            ForecastIoHistoryService historyService) {
         this.forecastService = forecastService;
         this.historyService = historyService;
     }

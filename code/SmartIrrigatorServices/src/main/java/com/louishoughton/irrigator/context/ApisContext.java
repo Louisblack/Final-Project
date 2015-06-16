@@ -35,7 +35,9 @@ public class ApisContext {
     
     @Bean
     public LocationFinder locationFinder() {
-        return new GoogleMapsLocationFinder(geoApiContext(), env.getProperty("postcode"));
+        return 
+            new GoogleMapsLocationFinder(geoApiContext(), 
+                                         env.getProperty("postcode"));
     }
 
 }

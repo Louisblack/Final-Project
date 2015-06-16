@@ -38,14 +38,15 @@ public class GoogleMapsLocationFinder implements LocationFinder {
     }
 
     private LatLng findLatLong() throws LocationException {
-        GeocodingResult geocodingResult = findLocation();
-        LatLng latlng = geocodingResult.geometry.location;
-        return latlng;
+        GeocodingResult geocodingResult = findGeocodingResultForAddress();
+        return geocodingResult.geometry.location;
     }
     
-    private GeocodingResult findLocation() throws LocationException {
+    private GeocodingResult findGeocodingResultForAddress() 
+            throws LocationException {
         try {
-            GeocodingResult[] results = geocodingConnector.getListOfResults(context, address);
+            GeocodingResult[] results = 
+                    geocodingConnector.getListOfResults(context, address);
             return selectLocationFromResults(results); 
         } catch (Exception e) {
             LOG.error("Could not find location using Google Maps", e);
@@ -53,7 +54,7 @@ public class GoogleMapsLocationFinder implements LocationFinder {
         }
     }
 
-    protected GeocodingResult selectLocationFromResults(
+    private GeocodingResult selectLocationFromResults(
             GeocodingResult[] results) throws LocationException {
         if (results.length == 1) {
             return results[0];
