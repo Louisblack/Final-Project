@@ -20,6 +20,7 @@
 		<module>SmartIrrigatorServices</module>
 		<module>SmartIrrigatorServer</module>
 		<module>SmartIrrigatorDomain</module>
+		<module>SmartIrrigatorWeb</module>
 	</modules>
 	<build>
 		<plugins>
