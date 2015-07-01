@@ -4,15 +4,28 @@
 
 var smartIrrigatorWebServices = angular.module('smartIrrigatorWebServices', ['ngResource']);
 
-smartIrrigatorWebServices.factory('ExecutionService', ['$http',
+smartIrrigatorWebServices.service('ExecutionService', ['$http',
     function($http){
 
-        this.getExecutions = function(pageNumber) {
+        this.getExecutions = function(pageNumber, callback) {
+            // Hardcoded domain for test only
+            $http.get('http://localhost:8888/executions/' + pageNumber).
+                success(function(data){
+                    callback(data);
+                }).
+                error(function(data) {
 
+                });
         };
 
-        this.getDetail = function(ids) {
+        this.getDetail = function(ids, callback) {
+            $http.get('http://localhost:8888/detail/'+ ids).
+                success(function(data){
+                    callback(data);
+                }).
+                error(function(data) {
 
+                });
         };
 
     }]);

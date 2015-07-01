@@ -16,7 +16,6 @@ import java.util.List;
 @Component
 public class ExecutionDaoImpl implements ExecutionDao {
 
-    private static final Logger LOG = LogManager.getLogger(ExecutionDaoImpl.class);
     private SessionFactory sessionFactory;
 
 
@@ -28,7 +27,6 @@ public class ExecutionDaoImpl implements ExecutionDao {
     @Transactional
     public void save(Execution execution) {
         execution.setDateRun(new Date());
-        LOG.info("Saving execution - " + execution);
         sessionFactory.getCurrentSession().save(execution);
     }
 

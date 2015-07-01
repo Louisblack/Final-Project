@@ -3,8 +3,10 @@
         <div class="col-md-10">
             <!--Body content-->
 
-            <ul class="phones">
-                <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail phone-listing">
+            <ul class="executions">
+                <li ng-repeat="execution in executions| filter:query | orderBy:orderProp" class="execution">
+                    <h3 class="execution__date">{{execution.date}}</h3>
+                    <img class="execution__icon" src="img/{{execution.iconClass}}.png">
                 </li>
             </ul>
 
