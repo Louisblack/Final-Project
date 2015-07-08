@@ -37,7 +37,5 @@ public class ServiceContext {
                 env.getProperty(NODE_BASE_URL_PROPERTY),
                 env.getProperty(NODE_IRRIGATION_END_POINT_PROPERTY));
     }
-
-
     
 }

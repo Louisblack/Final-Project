@@ -1,0 +1,14 @@
+{
+  "databaseChangeLog": [
+    {
+      "include": {
+        "file": "src/main/resources/database/changelog.json"
+      }
+    },
+    {
+      "include": {
+        "file": "src/test/resources/test-data.json"
+      }
+    }
+  ]
+}

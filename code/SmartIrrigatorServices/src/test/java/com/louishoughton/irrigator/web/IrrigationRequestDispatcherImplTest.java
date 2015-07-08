@@ -39,7 +39,4 @@ public class IrrigationRequestDispatcherImplTest {
         
         verify(restTemplate).postForObject(uri, request, IrrigationResponse.class);
     }
-
-
-
 }

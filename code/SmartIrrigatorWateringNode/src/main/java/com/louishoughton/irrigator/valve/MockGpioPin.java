@@ -44,6 +44,4 @@ public class MockGpioPin extends GpioPinImpl {
         }
     }
 
-    
-
 }
