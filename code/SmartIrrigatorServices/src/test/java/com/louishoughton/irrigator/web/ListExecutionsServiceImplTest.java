@@ -39,7 +39,7 @@ public class ListExecutionsServiceImplTest {
     @Test
     public void should_create_a_list_with_one_item() throws Exception {
 
-        when(executionDao.list(1, 8)).thenReturn(Arrays.asList(getExecution(), getExecution()));
+        when(executionDao.list(0, 14)).thenReturn(Arrays.asList(getExecution(), getExecution()));
 
         List<ExecutionListItem> list = service.list(1);
 
