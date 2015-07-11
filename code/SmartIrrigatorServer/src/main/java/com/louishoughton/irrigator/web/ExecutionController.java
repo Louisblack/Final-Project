@@ -34,10 +34,10 @@ public class ExecutionController {
         return listService.list(from);
     }
 
-    @RequestMapping(value = "/detail/{ids}", method = RequestMethod.GET)
-    public DayDetailItem get(@PathVariable String ids) {
+    @RequestMapping(value = "/detail/{date}", method = RequestMethod.GET)
+    public DayDetailItem get(@PathVariable String date) {
         try {
-            return detailService.get(ids);
+            return detailService.get(date);
         } catch (ParseException e) {
             LOG.error(e);
         }

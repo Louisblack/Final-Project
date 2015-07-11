@@ -66,7 +66,12 @@ public class ExecutionDaoImpl implements ExecutionDao {
     }
 
     @Override
+    @Transactional
     public List<Execution> getExecutionsBetween(Date from, Date to) {
-        return null;
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Execution.class)
+                .add(Restrictions.between("dateRun", from, to))
+                .addOrder(Order.desc("dateRun"))
+                .list();
     }
 }

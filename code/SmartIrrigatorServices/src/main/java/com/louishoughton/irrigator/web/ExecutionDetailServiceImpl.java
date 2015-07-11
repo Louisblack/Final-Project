@@ -18,7 +18,7 @@ public class ExecutionDetailServiceImpl implements ExecutionDetailService {
 
     private ExecutionDao executionDao;
 
-    private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy:hh:mm");
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy:hh:mm");
 
     @Autowired
     public ExecutionDetailServiceImpl(ExecutionDao executionDao) {

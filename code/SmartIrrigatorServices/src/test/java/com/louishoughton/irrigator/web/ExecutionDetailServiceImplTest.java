@@ -36,7 +36,7 @@ public class ExecutionDetailServiceImplTest {
         Date to = formatter.parse("02/10/2015:23:59");
         when(dao.getExecutionsBetween(from, to)).thenReturn(Arrays.asList(new Execution(), new Execution()));
 
-        DayDetailItem dayDetailItem = service.get("02/10/2015");
+        DayDetailItem dayDetailItem = service.get("02-10-2015");
 
         assertThat(dayDetailItem.getNumberOfExecutions(), CoreMatchers.equalTo(2));
     }

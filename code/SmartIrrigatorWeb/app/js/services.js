@@ -18,8 +18,8 @@ smartIrrigatorWebServices.service('ExecutionService', ['$http',
                 });
         };
 
-        this.getDetail = function(ids, callback) {
-            $http.get('http://localhost:8888/detail/'+ ids).
+        this.getDetail = function(date, callback) {
+            $http.get('http://localhost:8888/executions/detail/'+ date).
                 success(function(data){
                     callback(data);
                 }).
