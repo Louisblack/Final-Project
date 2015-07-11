@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Component
 public class ListExecutionsServiceImpl implements ListExecutionsService {
 
-    public static final int RECORDS_TO_RETRIEVE = 7;
+    public static final int RECORDS_TO_RETRIEVE = 14;
     private ExecutionDao executionDao;
 
     @Autowired
@@ -29,7 +29,8 @@ public class ListExecutionsServiceImpl implements ListExecutionsService {
     }
 
     private Map<Date, List<Execution>> findExecutionsGroupedByDate(int from) {
-        return executionDao.list(from, from + RECORDS_TO_RETRIEVE)
+        List<Execution> executions = executionDao.list(from - 1, from + RECORDS_TO_RETRIEVE - 1);
+        return executions
                 .stream()
                 .collect(Collectors.groupingBy(Execution::getDateRunWithNoTime));
     }

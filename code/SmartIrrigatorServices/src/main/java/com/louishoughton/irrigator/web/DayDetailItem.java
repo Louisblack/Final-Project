@@ -31,4 +31,8 @@ public class DayDetailItem {
     public List<ExecutionDetailItem> getExecutions() {
         return executions;
     }
+
+    public int getNumberOfExecutions() {
+        return executions.size();
+    }
 }

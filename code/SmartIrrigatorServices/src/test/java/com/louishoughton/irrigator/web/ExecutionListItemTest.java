@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static com.louishoughton.irrigator.web.ExecutionListItem.ERROR_ICON;
 import static com.louishoughton.irrigator.web.ExecutionListItem.RAIN_ICON;
 import static com.louishoughton.irrigator.web.ExecutionListItem.SUN_ICON;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -45,9 +46,22 @@ public class ExecutionListItemTest {
         assertThat(actual, equalTo(expected));
     }
 
+    @Test
+    public void should_have_an_error_icon_if_execution_has_errors() throws Exception {
+        List<Execution> executions = Arrays.asList(executionWithDuration(10), executionWithError());
+        ExecutionListItem executionListItem = new ExecutionListItem(date, executions);
+        assertThat(executionListItem.getIconClass(), equalTo(ERROR_ICON));
+    }
+
     private Execution executionWithDuration(int duration) {
         Execution execution = new Execution();
         execution.setIrrigationRequest(new IrrigationRequest(duration));
+        return execution;
+    }
+
+    private Execution executionWithError() {
+        Execution execution = new Execution();
+        execution.setErrors(Arrays.asList(new Error("Oops")));
         return execution;
     }
 }

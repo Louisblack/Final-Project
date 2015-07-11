@@ -17,9 +17,11 @@ public class ExecutionListItem {
 
     public static final String RAIN_ICON = "rain_icon";
     public static final String SUN_ICON = "sun_icon";
+    public static final String ERROR_ICON = "error_icon";
 
     private String date;
     private boolean didIrrigate;
+    private boolean hasErrors;
     private int irrigationDuration;
     private String iconClass = RAIN_ICON; // Pessimistically assume rain
     private List<Integer> ids = new ArrayList<>();
@@ -37,6 +39,7 @@ public class ExecutionListItem {
     public ExecutionListItem(Date date, Collection<Execution> executions) {
         this.date = formatter.format(date);
         executions.stream().forEach(this::addExecutionData);
+        setIcon();
     }
 
     private void addExecutionData(Execution execution) {
@@ -44,7 +47,17 @@ public class ExecutionListItem {
         if (execution.getIrrigationDuration() > 0) {
             didIrrigate = true;
             irrigationDuration += execution.getIrrigationDuration();
-            iconClass = SUN_ICON;
+        }
+        if (execution.hasErrors()) {
+            hasErrors = true;
+        }
+    }
+
+    private void setIcon() {
+        if (hasErrors) {
+            iconClass = ERROR_ICON;
+        } else {
+            iconClass = irrigationDuration > 0 ? SUN_ICON : RAIN_ICON;
         }
     }
 

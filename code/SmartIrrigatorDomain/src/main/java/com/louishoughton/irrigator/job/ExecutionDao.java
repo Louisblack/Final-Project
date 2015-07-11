@@ -1,5 +1,6 @@
 package com.louishoughton.irrigator.job;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ExecutionDao {
@@ -13,4 +14,6 @@ public interface ExecutionDao {
     List<Execution> list();
 
     List<Execution> list(int from, int to);
+
+    List<Execution> getExecutionsBetween(Date from, Date to);
 }

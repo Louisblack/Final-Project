@@ -143,6 +143,26 @@ public class Execution {
         return irrigationRequest != null ? irrigationRequest.getSeconds() : 0;
     }
 
+    public double getHistoricalHighestInchesPerHour() {
+        return history != null ? history.getHighestInchesPerHour() : 0;
+    }
+
+    public boolean hasErrors() {
+        return errors != null && errors.size() > 0;
+    }
+
+    public double getForcastChanceOfRainPercentage() {
+        return forecast != null ? forecast.getChanceOfRainPercentage() : 0;
+    }
+
+    public double getForecastInchesPerHour() {
+        return forecast != null ? forecast.getInchesPerHour() : 0;
+    }
+
+    public double getForecastMaximumTemperature() {
+        return forecast != null ? forecast.getMaximumTemperature() : 0;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);
@@ -157,5 +177,4 @@ public class Execution {
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-
 }

@@ -21,10 +21,10 @@ public class ExecutionDetailItem {
         this.time = formatter.format(execution.getDateRun());
         this.didIrrigate = execution.getIrrigationDuration() > 0;
         this.duration = execution.getIrrigationDuration();
-        this.pastIntensity = execution.getHistory().getHighestInchesPerHour();
-        this.forecastProbability = execution.getForecast().getChanceOfRainPercentage();
-        this.forecastIntensity = execution.getForecast().getInchesPerHour();
-        this.forecastTemperature = execution.getForecast().getMaximumTemperature();
+        this.pastIntensity = execution.getHistoricalHighestInchesPerHour();
+        this.forecastProbability = execution.getForcastChanceOfRainPercentage();
+        this.forecastIntensity = execution.getForecastInchesPerHour();
+        this.forecastTemperature = execution.getForecastMaximumTemperature();
     }
 
     public String getTime() {

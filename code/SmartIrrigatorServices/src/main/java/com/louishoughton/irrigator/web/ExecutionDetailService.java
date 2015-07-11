@@ -1,5 +1,6 @@
 package com.louishoughton.irrigator.web;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -7,5 +8,5 @@ import java.util.List;
  */
 public interface ExecutionDetailService {
 
-    DayDetailItem get(String ids);
+    DayDetailItem get(String ids) throws ParseException;
 }

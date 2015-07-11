@@ -555,7 +555,7 @@
                   {
                     "column": {
                       "name": "dateRun",
-                      "valueDate": "2015-07-01T20:00:00"
+                      "valueDate": "2015-07-02T06:00:00"
                     }
                   },
                   {
@@ -577,6 +577,257 @@
                     }
                   }
                 ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "forecast",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "chanceOfRainPercentage",
+                      "valueNumeric": "90"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "inchesPerHour",
+                      "valueNumeric": "0.04"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "maximumtemperature",
+                      "valueNumeric": "17"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "history",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "highestInchesPerHour",
+                      "valueNumeric": "0.4"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "irrigationrequest",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "seconds",
+                      "valueNumeric": "0"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "execution",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "dateRun",
+                      "valueDate": "2015-07-02T20:00:00"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "history_id",
+                      "valueNumeric": "8"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "forecast_Id",
+                      "valueNumeric": "8"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "irrigationRequest_id",
+                      "valueNumeric": "8"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "forecast",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "chanceOfRainPercentage",
+                      "valueNumeric": "90"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "inchesPerHour",
+                      "valueNumeric": "0.04"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "maximumtemperature",
+                      "valueNumeric": "17"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "history",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "highestInchesPerHour",
+                      "valueNumeric": "0.4"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "irrigationrequest",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "seconds",
+                      "valueNumeric": "0"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "execution",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "dateRun",
+                      "valueDate": "2015-07-03T06:00:00"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "history_id",
+                      "valueNumeric": "9"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "forecast_Id",
+                      "valueNumeric": "9"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "irrigationRequest_id",
+                      "valueNumeric": "9"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "forecast",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "chanceOfRainPercentage",
+                      "valueNumeric": "90"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "inchesPerHour",
+                      "valueNumeric": "0.04"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "maximumtemperature",
+                      "valueNumeric": "17"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "history",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "highestInchesPerHour",
+                      "valueNumeric": "0.4"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "irrigationrequest",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "seconds",
+                      "valueNumeric": "0"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "insert": {
+                "tableName": "execution",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "dateRun",
+                      "valueDate": "2015-07-03T20:00:00"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "history_id",
+                      "valueNumeric": "10"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "forecast_Id",
+                      "valueNumeric": "10"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "irrigationRequest_id",
+                      "valueNumeric": "10"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "sql": {
+                "sql": "insert into error (execution_Id, message) values (10, 'Error connecting to node')"
               }
             }
           ]

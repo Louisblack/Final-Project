@@ -64,4 +64,9 @@ public class ExecutionDaoImpl implements ExecutionDao {
                 .addOrder(Order.desc("dateRun"))
                 .list();
     }
+
+    @Override
+    public List<Execution> getExecutionsBetween(Date from, Date to) {
+        return null;
+    }
 }
