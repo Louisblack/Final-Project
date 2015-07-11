@@ -4,9 +4,10 @@
             <!--Body content-->
 
             <ul class="executions">
-                <li ng-repeat="execution in executions| filter:query | orderBy:orderProp" class="execution">
+                <li ng-repeat="execution in executions| filter:query | orderBy:orderProp" ng-class="{expanded: isExpanded($index)}">
                     <h3 class="execution__date">{{execution.date}}</h3>
                     <img class="execution__icon" src="img/{{execution.iconClass}}.png">
+                    <span ng-click="showHideDetail($index)" class="glyphicon glyphicon-chevron-down"></span>
                 </li>
             </ul>
 

@@ -12,6 +12,14 @@ smartIrrigatorWebControllers.controller('HomeCtrl', ['$scope', 'ExecutionService
             $scope.executions = executions;
         });
 
+        $scope.showHideDetail = function(index) {
+            $scope["expanded" + index] = !$scope["expanded" + index];
+        };
+
+        $scope.isExpanded = function(index) {
+            return $scope["expanded" + index];
+        }
+
     }]);
 
 
