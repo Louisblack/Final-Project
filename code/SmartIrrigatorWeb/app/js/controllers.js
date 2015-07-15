@@ -16,13 +16,16 @@ smartIrrigatorWebControllers.controller('HomeCtrl', ['$scope', 'ExecutionService
         function loadDetail(index) {
             var date = fixDateForUrl($scope.executions[index].date);
             ExecutionService.getDetail(date, function(details) {
+                $scope.executions[index].executionDetails = details.executions;
                 $scope["expanded" + index] = true;
+
             })
         };
 
         $scope.showHideDetail = function(index) {
             if ($scope.isExpanded(index)) {
                 $scope["expanded" + index] = false;
+                $scope.executions[index].executionDetails = [];
             } else {
                 loadDetail(index);
             }

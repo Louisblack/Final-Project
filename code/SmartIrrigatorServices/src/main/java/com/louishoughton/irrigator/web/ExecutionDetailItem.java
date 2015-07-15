@@ -11,9 +11,9 @@ public class ExecutionDetailItem {
     private String time;
     private boolean didIrrigate;
     private int duration;
-    private double pastIntensity;
+    private String pastIntensity;
     private double forecastProbability;
-    private double forecastIntensity;
+    private String forecastIntensity;
     private double forecastTemperature;
     private List<String> errors;
 
@@ -23,9 +23,9 @@ public class ExecutionDetailItem {
         this.time = formatter.format(execution.getDateRun());
         this.didIrrigate = execution.getIrrigationDuration() > 0;
         this.duration = execution.getIrrigationDuration();
-        this.pastIntensity = execution.getHistoricalHighestInchesPerHour();
+        this.pastIntensity = new RainIntensity(execution.getHistoricalHighestInchesPerHour()).getFriendlyLabel();
         this.forecastProbability = execution.getForecastChanceOfRainPercentage();
-        this.forecastIntensity = execution.getForecastInchesPerHour();
+        this.forecastIntensity = new RainIntensity(execution.getForecastInchesPerHour()).getFriendlyLabel();
         this.forecastTemperature = execution.getForecastMaximumTemperature();
         this.errors = execution.getErrorMessages();
     }
@@ -42,7 +42,7 @@ public class ExecutionDetailItem {
         return duration;
     }
 
-    public double getPastIntensity() {
+    public String getPastIntensity() {
         return pastIntensity;
     }
 
@@ -50,7 +50,7 @@ public class ExecutionDetailItem {
         return forecastProbability;
     }
 
-    public double getForecastIntensity() {
+    public String getForecastIntensity() {
         return forecastIntensity;
     }
 
@@ -58,7 +58,7 @@ public class ExecutionDetailItem {
         return forecastTemperature;
     }
 
-    public SimpleDateFormat getFormatter() {
-        return formatter;
+    public List<String> getErrors() {
+        return errors;
     }
 }

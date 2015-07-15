@@ -8,6 +8,23 @@
                     <h3 class="execution__date">{{execution.date}}</h3>
                     <img class="execution__icon" src="img/{{execution.iconClass}}.png">
                     <span ng-click="showHideDetail($index)" class="glyphicon glyphicon-chevron-down"></span>
+                    <div class="details">
+                        <div class="detail" ng-repeat="detail in execution.executionDetails">
+                            <h4>{{detail.time}}</h4>
+                            <ul>
+                                <li ng-if="detail.errors.length">
+                                    <span>Oh no! The following error occurred :(</span>
+                                    <p ng-repeat="error in detail.errors">{{error}}</p>
+                                </li>
+                                <li ng-if="detail.didIrrigate">I watered the garden for {{detail.duration}} seconds.</li>
+                                <li ng-if="!detail.didIrrigate">I didn't water the garden.</li>
+                                <li>The probability of rain was {{detail.forecastProbability}}%.</li>
+                                <li ng-if="detail.forecastProbability > 40">It was forecast {{detail.forecastIntensity}}.</li>
+                                <li>The high temperature was forecast to be {{detail.forecastTemperature}} degrees.</li>
+                                <li>There was {{detail.pastIntensity}} in the past 8 hours.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
             </ul>
 

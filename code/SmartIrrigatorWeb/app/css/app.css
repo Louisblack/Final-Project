@@ -1,0 +1,16 @@
+.executions .expanded .glyphicon-chevron-down {
+    transform: rotateX(180deg);
+}
+
+.details {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height 0.8s;
+    -moz-transition: max-height 0.8s;
+    transition: max-height 0.4s;
+}
+
+.expanded .details {
+    max-height: 700px;
+
+}
