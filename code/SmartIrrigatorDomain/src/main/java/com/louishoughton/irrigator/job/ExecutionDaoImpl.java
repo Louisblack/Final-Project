@@ -37,6 +37,7 @@ public class ExecutionDaoImpl implements ExecutionDao {
 
     @Override
     @Transactional
+    @SuppressWarnings("unchecked")
     public List<Execution> get(List<Integer> ids) {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Execution.class)
@@ -46,6 +47,7 @@ public class ExecutionDaoImpl implements ExecutionDao {
 
     @Override
     @Transactional
+    @SuppressWarnings("unchecked")
     public List<Execution> list() {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Execution.class)
@@ -67,6 +69,7 @@ public class ExecutionDaoImpl implements ExecutionDao {
 
     @Override
     @Transactional
+    @SuppressWarnings("unchecked")
     public List<Execution> getExecutionsBetween(Date from, Date to) {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Execution.class)

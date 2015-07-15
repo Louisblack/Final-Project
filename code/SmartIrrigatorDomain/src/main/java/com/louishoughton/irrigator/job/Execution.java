@@ -23,7 +23,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static javax.persistence.GenerationType.IDENTITY;
 import static org.hibernate.annotations.CascadeType.SAVE_UPDATE;
 
@@ -53,7 +55,7 @@ public class Execution {
     @OneToMany(mappedBy = "execution", fetch = FetchType.EAGER)
     @Cascade(SAVE_UPDATE)
 
-    private List<com.louishoughton.irrigator.web.Error> errors;
+    private List<com.louishoughton.irrigator.web.Error> errors = new ArrayList<>();
 
     public Execution() {
         this.dateRun = new Date();
@@ -151,7 +153,7 @@ public class Execution {
         return errors != null && errors.size() > 0;
     }
 
-    public double getForcastChanceOfRainPercentage() {
+    public double getForecastChanceOfRainPercentage() {
         return forecast != null ? forecast.getChanceOfRainPercentage() : 0;
     }
 
@@ -161,6 +163,10 @@ public class Execution {
 
     public double getForecastMaximumTemperature() {
         return forecast != null ? forecast.getMaximumTemperature() : 0;
+    }
+
+    public List<String> getErrorMessages() {
+        return errors.stream().map(e -> e.getMessage()).collect(toList());
     }
 
     @Override
@@ -177,4 +183,5 @@ public class Execution {
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+
 }

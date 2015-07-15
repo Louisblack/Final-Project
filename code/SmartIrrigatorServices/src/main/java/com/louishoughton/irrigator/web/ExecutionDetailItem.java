@@ -4,6 +4,7 @@ package com.louishoughton.irrigator.web;
 import com.louishoughton.irrigator.job.Execution;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class ExecutionDetailItem {
 
@@ -14,6 +15,7 @@ public class ExecutionDetailItem {
     private double forecastProbability;
     private double forecastIntensity;
     private double forecastTemperature;
+    private List<String> errors;
 
     private SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
 
@@ -22,9 +24,10 @@ public class ExecutionDetailItem {
         this.didIrrigate = execution.getIrrigationDuration() > 0;
         this.duration = execution.getIrrigationDuration();
         this.pastIntensity = execution.getHistoricalHighestInchesPerHour();
-        this.forecastProbability = execution.getForcastChanceOfRainPercentage();
+        this.forecastProbability = execution.getForecastChanceOfRainPercentage();
         this.forecastIntensity = execution.getForecastInchesPerHour();
         this.forecastTemperature = execution.getForecastMaximumTemperature();
+        this.errors = execution.getErrorMessages();
     }
 
     public String getTime() {

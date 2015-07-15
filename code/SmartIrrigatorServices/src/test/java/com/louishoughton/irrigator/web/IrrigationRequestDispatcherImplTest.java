@@ -1,7 +1,6 @@
 package com.louishoughton.irrigator.web;
 
 import com.louishoughton.irrigator.valve.NodeConnectionException;
-import junit.framework.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
