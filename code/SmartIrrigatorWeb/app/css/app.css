@@ -1,3 +1,31 @@
+body {
+    background-image: url("../img/grass_bg.jpg");
+}
+
+.day {
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    max-width: 700px;
+}
+
+.execution__icon {
+    max-width: 40%;
+    max-height: 100px;
+}
+
+.execution__date {
+    float: right;
+}
+
+.glyphicon {
+    float: right;
+    clear: both;
+    right: 10px;
+    margin-top: 30px;
+}
+
 .executions .expanded .glyphicon-chevron-down {
     transform: rotateX(180deg);
 }
