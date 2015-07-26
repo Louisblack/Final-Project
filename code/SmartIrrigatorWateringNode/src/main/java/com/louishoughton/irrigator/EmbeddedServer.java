@@ -1,15 +1,14 @@
 package com.louishoughton.irrigator;
 
+import java.io.IOException;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-
-import java.io.IOException;
 
 
 public class EmbeddedServer {
@@ -41,7 +40,8 @@ public class EmbeddedServer {
         server.join();
     }
 
-    private static ServletContextHandler getServletContextHandler(WebApplicationContext context) throws IOException {
+    private static ServletContextHandler getServletContextHandler(WebApplicationContext context) 
+            throws IOException {
         ServletContextHandler contextHandler = new ServletContextHandler();
         contextHandler.setErrorHandler(null);
         contextHandler.setContextPath(CONTEXT_PATH);
