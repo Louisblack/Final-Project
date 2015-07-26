@@ -1,7 +1,6 @@
 package com.louishoughton.irrigator.web;
 
 import java.text.ParseException;
-import java.util.List;
 
 /**
  * Created by Louis on 31/05/15.

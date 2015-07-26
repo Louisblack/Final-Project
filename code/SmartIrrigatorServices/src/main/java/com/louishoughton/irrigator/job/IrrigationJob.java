@@ -42,14 +42,14 @@ public class IrrigationJob implements Runnable {
             TodaysWeather todaysWeather = weatherService.getTodaysWeather();
             LOG.info("Todays weather is " + todaysWeather);
             Optional<IrrigationRequest> request = getIrrigationRequestFromForecast(todaysWeather);
-            if (request.isPresent()){
+            if (request.isPresent()) {
                 LOG.info("Sending request " + request.get());
                 IrrigationResponse response = requestDispatcher.dispatch(request.get());
                 saveExecution(todaysWeather, request.get(), response);
             } else {
                 saveExecution(todaysWeather);
             }
-        } catch(LocationException | ForecastException | NodeConnectionException exception) {
+        } catch (LocationException | ForecastException | NodeConnectionException exception) {
             LOG.error(exception);
             saveErroredExecution(exception);
         }

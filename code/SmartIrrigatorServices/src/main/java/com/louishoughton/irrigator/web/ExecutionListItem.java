@@ -1,16 +1,17 @@
 package com.louishoughton.irrigator.web;
 
-import com.louishoughton.irrigator.job.Execution;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.louishoughton.irrigator.job.Execution;
 
 
 public class ExecutionListItem {
@@ -28,7 +29,8 @@ public class ExecutionListItem {
 
     private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-    ExecutionListItem(String date, boolean didIrrigate, int irrigationDuration, String iconClass, List<Integer> ids) {
+    ExecutionListItem(String date, boolean didIrrigate, int irrigationDuration, 
+            String iconClass, List<Integer> ids) {
         this.date = date;
         this.didIrrigate = didIrrigate;
         this.irrigationDuration = irrigationDuration;

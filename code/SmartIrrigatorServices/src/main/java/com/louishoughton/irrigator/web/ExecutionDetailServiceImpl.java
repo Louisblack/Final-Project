@@ -1,17 +1,15 @@
 package com.louishoughton.irrigator.web;
 
-import com.louishoughton.irrigator.job.Execution;
-import com.louishoughton.irrigator.job.ExecutionDao;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import com.louishoughton.irrigator.job.Execution;
+import com.louishoughton.irrigator.job.ExecutionDao;
 
 @Component
 public class ExecutionDetailServiceImpl implements ExecutionDetailService {
@@ -26,7 +24,8 @@ public class ExecutionDetailServiceImpl implements ExecutionDetailService {
     }
 
     public DayDetailItem get(String date) throws ParseException {
-        List<Execution> executions = executionDao.getExecutionsBetween(calcFrom(date), calcTo(date));
+        List<Execution> executions = 
+                executionDao.getExecutionsBetween(calcFrom(date), calcTo(date));
         return new DayDetailItem(executions);
     }
 

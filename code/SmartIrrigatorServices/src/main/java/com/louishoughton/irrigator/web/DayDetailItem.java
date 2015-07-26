@@ -1,12 +1,11 @@
 package com.louishoughton.irrigator.web;
 
 
-import com.louishoughton.irrigator.job.Execution;
-
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.louishoughton.irrigator.job.Execution;
 
 public class DayDetailItem {
 
@@ -19,8 +18,8 @@ public class DayDetailItem {
         this.date = formatter.format(executions.get(0).getDateRun());
         this.executions = executions
             .stream().map(e -> {
-                return new ExecutionDetailItem(e);
-            })
+                    return new ExecutionDetailItem(e);
+                })
             .collect(Collectors.toList());
     }
 

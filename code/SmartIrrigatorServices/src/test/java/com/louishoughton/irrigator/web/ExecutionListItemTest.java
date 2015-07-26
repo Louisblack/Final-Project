@@ -1,21 +1,21 @@
 package com.louishoughton.irrigator.web;
 
 
-import com.louishoughton.irrigator.job.Execution;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static com.louishoughton.irrigator.web.ExecutionListItem.ERROR_ICON;
+import static com.louishoughton.irrigator.web.ExecutionListItem.RAIN_ICON;
+import static com.louishoughton.irrigator.web.ExecutionListItem.SUN_ICON;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static com.louishoughton.irrigator.web.ExecutionListItem.ERROR_ICON;
-import static com.louishoughton.irrigator.web.ExecutionListItem.RAIN_ICON;
-import static com.louishoughton.irrigator.web.ExecutionListItem.SUN_ICON;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.louishoughton.irrigator.job.Execution;
 
 public class ExecutionListItemTest {
 
@@ -31,7 +31,11 @@ public class ExecutionListItemTest {
     public void should_create_an_object_from_rainy_executions() throws Exception {
         List<Execution> executions = Arrays.asList(new Execution(), new Execution());
         ExecutionListItem actual = new ExecutionListItem(date, executions);
-        ExecutionListItem expected = new ExecutionListItem(DATE_STRING, false, 0, RAIN_ICON, Arrays.asList(0, 0));
+        ExecutionListItem expected = new ExecutionListItem(DATE_STRING, 
+                                                           false, 
+                                                           0, 
+                                                           RAIN_ICON, 
+                                                           Arrays.asList(0, 0));
 
         assertThat(actual, equalTo(expected));
     }
@@ -39,9 +43,14 @@ public class ExecutionListItemTest {
 
     @Test
     public void should_create_an_object_from_irrigating_executions() throws Exception {
-        List<Execution> executions = Arrays.asList(executionWithDuration(10), executionWithDuration(20));
+        List<Execution> executions = Arrays.asList(executionWithDuration(10), 
+                                                   executionWithDuration(20));
         ExecutionListItem actual = new ExecutionListItem(date, executions);
-        ExecutionListItem expected = new ExecutionListItem(DATE_STRING, true, 30, SUN_ICON, Arrays.asList(0, 0));
+        ExecutionListItem expected = new ExecutionListItem(DATE_STRING, 
+                                                           true, 
+                                                           30, 
+                                                           SUN_ICON, 
+                                                           Arrays.asList(0, 0));
 
         assertThat(actual, equalTo(expected));
     }

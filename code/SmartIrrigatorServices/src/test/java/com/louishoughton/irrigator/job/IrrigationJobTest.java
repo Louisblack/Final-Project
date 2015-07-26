@@ -1,5 +1,20 @@
 package com.louishoughton.irrigator.job;
 
+import static com.louishoughton.irrigator.forecast.TodaysWeather.LIGHT_RAIN;
+import static com.louishoughton.irrigator.forecast.TodaysWeather.MINIMUM_CHANCE_OF_RAIN;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
 import com.louishoughton.irrigator.forecast.Forecast;
 import com.louishoughton.irrigator.forecast.History;
 import com.louishoughton.irrigator.forecast.LocationException;
@@ -9,20 +24,6 @@ import com.louishoughton.irrigator.web.Error;
 import com.louishoughton.irrigator.web.IrrigationRequest;
 import com.louishoughton.irrigator.web.IrrigationRequestDispatcher;
 import com.louishoughton.irrigator.web.IrrigationResponse;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-
-import static com.louishoughton.irrigator.forecast.TodaysWeather.LIGHT_RAIN;
-import static com.louishoughton.irrigator.forecast.TodaysWeather.MINIMUM_CHANCE_OF_RAIN;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IrrigationJobTest {
@@ -38,8 +39,8 @@ public class IrrigationJobTest {
 
     @Before
     public void setUp() throws Exception {
-        when(irrigationRequestDispatcher.dispatch(any(IrrigationRequest.class))).
-                thenReturn(new IrrigationResponse());
+        when(irrigationRequestDispatcher.dispatch(any(IrrigationRequest.class)))
+            .thenReturn(new IrrigationResponse());
         job = new IrrigationJob(weatherService, irrigationRequestDispatcher,
                 executionDao);
     }
@@ -47,7 +48,8 @@ public class IrrigationJobTest {
     @Test
     public void should_query_weather_service() throws Exception {
         TodaysWeather todaysWeather =
-                new TodaysWeather(new Forecast(MINIMUM_CHANCE_OF_RAIN, LIGHT_RAIN, 25), new History(LIGHT_RAIN));
+                new TodaysWeather(new Forecast(MINIMUM_CHANCE_OF_RAIN, LIGHT_RAIN, 25), 
+                                  new History(LIGHT_RAIN));
         when(weatherService.getTodaysWeather()).thenReturn(todaysWeather);
         job.run();
         verify(weatherService).getTodaysWeather();
@@ -100,8 +102,8 @@ public class IrrigationJobTest {
         when(todaysWeather.getForecast()).thenReturn(forecast);
         when(todaysWeather.getHistory()).thenReturn(history);
         when(weatherService.getTodaysWeather()).thenReturn(todaysWeather);
-        when(irrigationRequestDispatcher.dispatch(request)).
-                thenReturn(irrigationResponse);
+        when(irrigationRequestDispatcher.dispatch(request))
+            .thenReturn(irrigationResponse);
 
         job.run();
 

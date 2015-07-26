@@ -1,9 +1,22 @@
 package com.louishoughton.irrigator.job;
 
-import com.louishoughton.irrigator.forecast.Forecast;
-import com.louishoughton.irrigator.forecast.History;
-import com.louishoughton.irrigator.web.Error;
-import com.louishoughton.irrigator.web.IrrigationRequest;
+import static java.util.stream.Collectors.toList;
+import static javax.persistence.GenerationType.IDENTITY;
+import static org.hibernate.annotations.CascadeType.SAVE_UPDATE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,22 +25,10 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
-import static javax.persistence.GenerationType.IDENTITY;
-import static org.hibernate.annotations.CascadeType.SAVE_UPDATE;
+import com.louishoughton.irrigator.forecast.Forecast;
+import com.louishoughton.irrigator.forecast.History;
+import com.louishoughton.irrigator.web.Error;
+import com.louishoughton.irrigator.web.IrrigationRequest;
 
 @Entity
 @Immutable

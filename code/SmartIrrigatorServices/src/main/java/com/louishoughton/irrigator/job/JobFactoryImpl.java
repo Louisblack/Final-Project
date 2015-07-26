@@ -13,8 +13,8 @@ public class JobFactoryImpl implements JobFactory {
     private ExecutionDao executionDao;
 
     @Autowired
-    public JobFactoryImpl(IrrigationRequestDispatcher irrigationRequestDispatcher, WeatherService weatherService,
-                          ExecutionDao executionDao) {
+    public JobFactoryImpl(IrrigationRequestDispatcher irrigationRequestDispatcher, 
+            WeatherService weatherService, ExecutionDao executionDao) {
         this.irrigationRequestDispatcher = irrigationRequestDispatcher;
         this.weatherService = weatherService;
         this.executionDao = executionDao;

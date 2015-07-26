@@ -1,17 +1,15 @@
 package com.louishoughton.irrigator.job;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.Date;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.List;
 
 @Component
 public class ExecutionDaoImpl implements ExecutionDao {
@@ -58,6 +56,7 @@ public class ExecutionDaoImpl implements ExecutionDao {
 
     @Override
     @Transactional
+    @SuppressWarnings("unchecked")
     public List<Execution> list(int from, int to) {
         return sessionFactory.getCurrentSession()
                 .createCriteria(Execution.class)

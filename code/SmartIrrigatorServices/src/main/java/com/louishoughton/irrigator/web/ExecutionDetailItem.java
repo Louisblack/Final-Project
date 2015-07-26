@@ -23,9 +23,11 @@ public class ExecutionDetailItem {
         this.time = formatter.format(execution.getDateRun());
         this.didIrrigate = execution.getIrrigationDuration() > 0;
         this.duration = execution.getIrrigationDuration();
-        this.pastIntensity = new RainIntensity(execution.getHistoricalHighestInchesPerHour()).getFriendlyLabel();
+        this.pastIntensity = 
+            new RainIntensity(execution.getHistoricalHighestInchesPerHour()).getFriendlyLabel();
         this.forecastProbability = execution.getForecastChanceOfRainPercentage();
-        this.forecastIntensity = new RainIntensity(execution.getForecastInchesPerHour()).getFriendlyLabel();
+        this.forecastIntensity = 
+            new RainIntensity(execution.getForecastInchesPerHour()).getFriendlyLabel();
         this.forecastTemperature = execution.getForecastMaximumTemperature();
         this.errors = execution.getErrorMessages();
     }

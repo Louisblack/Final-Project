@@ -1,21 +1,21 @@
 package com.louishoughton.irrigator.web;
 
-import com.louishoughton.irrigator.job.Execution;
-import com.louishoughton.irrigator.job.ExecutionDao;
-import org.hamcrest.CoreMatchers;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import org.hamcrest.CoreMatchers;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import com.louishoughton.irrigator.job.Execution;
+import com.louishoughton.irrigator.job.ExecutionDao;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExecutionDetailServiceImplTest {
@@ -34,7 +34,8 @@ public class ExecutionDetailServiceImplTest {
     public void should_return_executions_for_the_day() throws Exception {
         Date from = formatter.parse("02/10/2015:00:00");
         Date to = formatter.parse("02/10/2015:23:59");
-        when(dao.getExecutionsBetween(from, to)).thenReturn(Arrays.asList(new Execution(), new Execution()));
+        when(dao.getExecutionsBetween(from, to)).thenReturn(Arrays.asList(new Execution(), 
+                                                                          new Execution()));
 
         DayDetailItem dayDetailItem = service.get("02-10-2015");
 

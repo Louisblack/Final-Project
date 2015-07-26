@@ -40,8 +40,8 @@ public class ListExecutionsServiceImpl implements ListExecutionsService {
                 .stream()
                 .sorted(Comparator.<Date>reverseOrder())
                 .map(date -> {
-                    return new ExecutionListItem(date, groupedByDate.get(date));
-                })
+                        return new ExecutionListItem(date, groupedByDate.get(date));
+                    })
                 .collect(Collectors.toList());
     }
 
