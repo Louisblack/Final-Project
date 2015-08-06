@@ -4,9 +4,9 @@
 
 var smartIrrigatorWebControllers = angular.module('smartIrrigatorWebControllers', []);
 
-smartIrrigatorWebControllers.controller('HomeCtrl', ['$scope', 'ExecutionService',
+smartIrrigatorWebControllers.controller('HomeCtrl', ['$scope', 'ExecutionService', 'WaterNowService',
 
-    function ($scope, ExecutionService) {
+    function ($scope, ExecutionService, WaterNowService) {
 
         function fixDateForUrl(date) {
             var regex = new RegExp("/", "g");
@@ -20,6 +20,18 @@ smartIrrigatorWebControllers.controller('HomeCtrl', ['$scope', 'ExecutionService
                 $scope["expanded" + index] = true;
 
             })
+        };
+
+        $scope.waterNow = function() {
+            WaterNowService.waterNow(function(response) {
+                if (response.success) {
+                    BootstrapDialog.alert("Everything went OK!")
+                } else {
+                    BootstrapDialog.alert(response.errors.map(function(error){
+                        return error.message;
+                    }).join("\n"))
+                }
+            });
         };
 
         $scope.showHideDetail = function(index) {

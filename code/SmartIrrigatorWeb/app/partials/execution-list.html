@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-10">
             <!--Body content-->
-
+            <button ng-click="waterNow()" type="button" class="btn btn-default btn-lg center-block">Water Now</button>
             <ul class="executions">
                 <li ng-repeat="execution in executions| filter:query | orderBy:orderProp" ng-class="{expanded: isExpanded($index)}" class="day">
                     <h3 class="execution__date">{{execution.date}}</h3>

@@ -6,7 +6,9 @@ var smartIrrigatorWebServices = angular.module('smartIrrigatorWebServices', ['ng
 
 smartIrrigatorWebServices.service('ExecutionService', ['$http',
     function($http){
+
         $http.defaults.useXDomain = true;
+
         this.getExecutions = function(pageNumber, callback) {
             // Hardcoded domain for test only
             $http.get('http://localhost:8888/executions/' + pageNumber).
@@ -28,4 +30,24 @@ smartIrrigatorWebServices.service('ExecutionService', ['$http',
                 });
         };
 
-    }]);
+    }
+]);
+
+smartIrrigatorWebServices.service('WaterNowService', ['$http',
+    function($http){
+
+        $http.defaults.useXDomain = true;
+
+        this.waterNow = function(callback) {
+            // Hardcoded domain for test only
+            $http.post('http://localhost:8888/watering/', {
+                seconds: window.prompt("How long should I water for?")
+            }).
+            success(callback).
+            error(function(data) {
+
+            });
+        };
+
+    }
+]);
