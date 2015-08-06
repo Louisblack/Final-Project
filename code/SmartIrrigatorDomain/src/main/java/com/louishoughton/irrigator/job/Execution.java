@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.louishoughton.irrigator.valve.IrrigationValveException;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -143,7 +144,11 @@ public class Execution {
     }
 
     public int getIrrigationDuration() {
-        return irrigationRequest != null ? irrigationRequest.getSeconds() : 0;
+        try {
+            return irrigationRequest != null ? irrigationRequest.getSeconds() : 0;
+        } catch (IrrigationValveException e) {
+            return 0;
+        }
     }
 
     public double getHistoricalHighestInchesPerHour() {

@@ -1,10 +1,8 @@
 package com.louishoughton.irrigator.web;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -25,17 +23,15 @@ public class ExecutionListItem {
     private boolean hasErrors;
     private int irrigationDuration;
     private String iconClass = RAIN_ICON; // Pessimistically assume rain
-    private List<Integer> ids = new ArrayList<>();
 
     private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     ExecutionListItem(String date, boolean didIrrigate, int irrigationDuration, 
-            String iconClass, List<Integer> ids) {
+            String iconClass) {
         this.date = date;
         this.didIrrigate = didIrrigate;
         this.irrigationDuration = irrigationDuration;
         this.iconClass = iconClass;
-        this.ids = ids;
     }
 
     public ExecutionListItem(Date date, Collection<Execution> executions) {
@@ -45,7 +41,6 @@ public class ExecutionListItem {
     }
 
     private void addExecutionData(Execution execution) {
-        ids.add(execution.getId());
         if (execution.getIrrigationDuration() > 0) {
             didIrrigate = true;
             irrigationDuration += execution.getIrrigationDuration();

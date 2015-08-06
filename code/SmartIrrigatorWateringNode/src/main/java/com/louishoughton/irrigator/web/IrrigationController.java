@@ -24,7 +24,7 @@ public class IrrigationController {
         this.valve = valve;
     }
 
-    @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE) 
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public IrrigationResponse irrigate(@RequestBody IrrigationRequest request) {
         try {
             valve.openFor(request.getSeconds());

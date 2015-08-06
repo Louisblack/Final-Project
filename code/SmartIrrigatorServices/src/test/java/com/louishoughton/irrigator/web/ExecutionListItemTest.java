@@ -34,8 +34,7 @@ public class ExecutionListItemTest {
         ExecutionListItem expected = new ExecutionListItem(DATE_STRING, 
                                                            false, 
                                                            0, 
-                                                           RAIN_ICON, 
-                                                           Arrays.asList(0, 0));
+                                                           RAIN_ICON);
 
         assertThat(actual, equalTo(expected));
     }
@@ -49,8 +48,7 @@ public class ExecutionListItemTest {
         ExecutionListItem expected = new ExecutionListItem(DATE_STRING, 
                                                            true, 
                                                            30, 
-                                                           SUN_ICON, 
-                                                           Arrays.asList(0, 0));
+                                                           SUN_ICON);
 
         assertThat(actual, equalTo(expected));
     }
